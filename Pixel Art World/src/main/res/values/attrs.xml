@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomGridView">
+                <attr name="separatorWidth" format="dimension" />
+        <attr name="separatorColor" format="color" />
+        <attr name="numColumns" format="integer" />
+        <attr name="showText1" format="boolean" />
+        <attr name="labelPosition" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />)
+        </attr>
+        <attr name="NumCol" format="integer" />
+        <attr name="NumRow" format="integer">
+            <enum name="auto_fit" value="-1" />
+        </attr>
+        <attr name="GridColor" format="integer">
+            <enum name="BLACK" value="-16777216" />
+            <enum name="BLUE" value="-16776961" />
+            <enum name="DKGRAY" value="-12303292" />
+            <enum name="GREEN" value="-16711936" />
+            <enum name="RED" value="-65536" />
+            <enum name="YELLOW" value="-256" />
+            <enum name="WHITE" value="-1" />
+            <enum name="TRANSPARENT" value="0" />
+        </attr>
+        <attr name="BackgroundColor" format="color">
+            <enum name="BLACK" value="-16777216" />
+            <enum name="BLUE" value="-16776961" />
+            <enum name="DKGRAY" value="-12303292" />
+            <enum name="GREEN" value="-16711936" />
+            <enum name="RED" value="-65536" />
+            <enum name="YELLOW" value="-256" />
+            <enum name="WHITE" value="-1" />
+            <enum name="TRANSPARENT" value="0" />
+        </attr>
+    </declare-styleable>
+
+</resources>

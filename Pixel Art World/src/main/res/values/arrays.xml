@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array translatable="false" name="colors">
+        <item>#ffff00</item>
+        <item>#ffb6c1</item>
+        <item>#ff69b4</item>
+        <item>#ff1493</item>
+        <item>#ff00ff</item>
+        <item>#ffa500</item>
+        <item>#cccccc</item>
+        <item>#888888</item>
+        <item>#444444</item>
+        <item>#000000</item>
+        <item>#6495ed</item>
+        <item>#00bfff</item>
+        <item>#00ffff</item>
+        <item>#90ee90</item>
+        <item>#006400</item>
+        <item>#ffffff</item>
+        <item>#00ff00</item>
+        <item>#0000cc</item>
+        <item>#fb0000</item>
+    </string-array>
+
+    <string-array name="maindrawermenu">
+        <item>New</item>
+        <item>Share</item>
+        <item>Delete</item>
+        <item>Open</item>
+        <item>Settings</item>
+     </string-array>
+
+
+        <integer-array name="maindrawermenuimage">
+            <item>@drawable/action_new</item>
+            <item>@drawable/ic_share</item>
+            <item>@drawable/ic_delete</item>
+            <item>@drawable/ic_perm_media</item>
+            <item>@drawable/ic_settings</item>
+        </integer-array>
+
+
+    <integer-array name="apptoshare">
+    <item>@drawable/facebook</item>
+    <item>@drawable/whatsapp</item>
+    <item>@drawable/more</item>
+    </integer-array>
+
+
+</resources>

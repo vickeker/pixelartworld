@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="colorpickerview__ColorPickerView"><attr format="boolean|reference" name="alphaChannelVisible"/><attr format="string|reference" name="alphaChannelText"/><attr format="color|reference" name="sliderColor"/><attr format="color|reference" name="borderColor"/></declare-styleable>
+    <!-- From: file:/D:/MyProjects/GitHub/ColorPickerView/color-picker-view/src/main/res/values/dimen.xml -->
+    <eat-comment/>
+    <dimen name="colorpickerview__dialog_preview_height">32dp</dimen>
+    <dimen name="colorpickerview__dialog_preview_width">65dp</dimen>
+    <dimen name="colorpickerview__required_padding">6dp</dimen>
+    <!-- From: file:/D:/MyProjects/GitHub/ColorPickerView/color-picker-view/src/main/res/values/ids.xml -->
+    <eat-comment/>
+    <item name="colorpickerview__color_panel_new" type="id"/>
+    <item name="colorpickerview__color_panel_old" type="id"/>
+    <item name="colorpickerview__color_picker_view" type="id"/>
+    <item name="colorpickerview__preference_preview_color_panel" type="id"/>
+    <!-- From: file:/D:/MyProjects/GitHub/ColorPickerView/color-picker-view/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="colorpickerview__ColorPickerViewStyle">
+        <item name="android:layout_width">215dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="colorpickerview__PickerDialogButtonStyle">
+       	<item name="android:background">@drawable/colorpickerview__btn_background</item>
+       	<item name="android:textAppearance">?android:textAppearanceMedium</item>
+       	<item name="android:textSize">14dp</item>   
+       	<item name="android:textStyle">bold</item>
+    </style>
+</resources>

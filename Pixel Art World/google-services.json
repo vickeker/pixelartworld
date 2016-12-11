@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "826994134761",
+    "firebase_url": "https://pixel-art-world.firebaseio.com",
+    "project_id": "pixel-art-world",
+    "storage_bucket": "pixel-art-world.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826994134761:android:bce651be03d730e6",
+        "android_client_info": {
+          "package_name": "kapp.pixelartworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826994134761-oksdlr7fjchtg0h1k163ifnm1obsgbtu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPK-sTx2bjDXQAC5QDZN_zYZjwfuINLe8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

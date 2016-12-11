@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "kapp.pixelartworld"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 8
+        versionName "1.3.1"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
+            minifyEnabled false
+            //    applicationIdSuffix ".debug"
+
+
+        }
+        /*    jnidebug {
+
+            // This copies the debuggable attribute and debug signing configurations.
+            initWith debug
+
+            applicationIdSuffix ".jnidebug"
+            jniDebuggable true
+        }  */
+
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.google.android.gms:play-services-appindexing:9.4.0'
+
+    compile 'com.facebook.android:facebook-android-sdk:4.14.1'
+    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.google.android.gms:play-services:9.4.0'
+    compile 'com.google.android.gms:play-services-ads:9.4.0'
+    compile 'com.github.danielnilsson9:color-picker-view:1.4.0@aar'
+    compile 'com.google.android.gms:play-services-appindexing:9.4.0'
+    compile 'com.google.firebase:firebase-core:9.4.0'
+    compile 'com.google.firebase:firebase-ads:9.4.0'
+    compile 'com.android.support:multidex:1.0.1'
+}
+
+
+apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/D:/MyProjects/GitHub/ColorPickerView/color-picker-view/src/main/res/values-sw600dp/styles.xml -->
+    <eat-comment/>
+    <style name="colorpickerview__ColorPickerViewStyle">
+        <item name="android:layout_width">360dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+</resources>

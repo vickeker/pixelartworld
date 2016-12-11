@@ -1,0 +1,15 @@
+#Pixel\ Art\ World/*.iml
+#*.iml
+#*.gradle
+#Pixel\ Art\ World/*.gradle
+/local.properties
+Pixel\ Art\ World/local.properties
+/.idea/workspace.xml
+Pixel\ Art\ World/.idea/workspace.xml
+/.idea/libraries
+Pixel\ Art\ World/.idea/libraries
+.DS_Store
+ "/build
+ "Pixel\ Art\ World/build
+/captures
+.externalNativeBuild
