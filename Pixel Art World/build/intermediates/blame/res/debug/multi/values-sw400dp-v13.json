@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\victor\\Documents\\Pixel Art World\\Pixel Art World\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw400dp-v13\\values-sw400dp-v13.xml",
+        "outputFile": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw400dp-v13\\values-sw400dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 120
                 },
                 "from": {
-                    "file": "C:\\Users\\victor\\Documents\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.github.danielnilsson9\\color-picker-view\\1.4.0\\res\\values-sw400dp\\values-sw400dp.xml",
+                    "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.github.danielnilsson9\\color-picker-view\\1.4.0\\res\\values-sw400dp\\values-sw400dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 189
                 },
                 "from": {
-                    "file": "C:\\Users\\victor\\Documents\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.github.danielnilsson9\\color-picker-view\\1.4.0\\res\\values-sw400dp\\values-sw400dp.xml",
+                    "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.github.danielnilsson9\\color-picker-view\\1.4.0\\res\\values-sw400dp\\values-sw400dp.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -50,7 +50,7 @@
                     "endOffset": 377
                 },
                 "from": {
-                    "file": "C:\\Users\\victor\\Documents\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.github.danielnilsson9\\color-picker-view\\1.4.0\\res\\values-sw400dp\\values-sw400dp.xml",
+                    "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.github.danielnilsson9\\color-picker-view\\1.4.0\\res\\values-sw400dp\\values-sw400dp.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,

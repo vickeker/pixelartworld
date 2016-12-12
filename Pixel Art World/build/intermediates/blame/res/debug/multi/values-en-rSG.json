@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\victor\\Documents\\Pixel Art World\\Pixel Art World\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rSG\\values-en-rSG.xml",
+        "outputFile": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rSG\\values-en-rSG.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 154
                 },
                 "from": {
-                    "file": "C:\\Users\\victor\\Documents\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-wallet\\9.4.0\\res\\values-en-rSG\\values.xml",
+                    "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-wallet\\9.4.0\\res\\values-en-rSG\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

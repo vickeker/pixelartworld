@@ -10,7 +10,7 @@ buildscript {
 }
 
 allprojects {
-    buildDir = "C:/Users/victor/Documents/${rootProject.name}/${project.name}/build"
+    buildDir = "C:/Users/vscheidecker/${rootProject.name}/${project.name}/build"
     repositories {
         jcenter()
     }

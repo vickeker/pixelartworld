@@ -1,20 +1,5 @@
 package kapp.pixelartworld;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
-import com.facebook.share.widget.LikeView;
-import com.facebook.share.widget.ShareDialog;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
@@ -26,12 +11,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
-import android.gesture.Gesture;
 import android.gesture.GesturePoint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -42,9 +25,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 import android.support.v4.widget.DrawerLayout;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -52,7 +33,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -65,15 +45,26 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.LikeView;
+import com.facebook.share.widget.ShareDialog;
 import com.github.danielnilsson9.colorpickerview.dialog.ColorPickerDialogFragment;
 import com.github.danielnilsson9.colorpickerview.dialog.ColorPickerDialogFragment.ColorPickerDialogListener;
-import com.github.danielnilsson9.colorpickerview.preference.ColorPreference;
-import com.github.danielnilsson9.colorpickerview.preference.ColorPreference.OnShowDialogListener;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -310,7 +301,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 			int numcol = savedInstanceState.getInt("numcol");
 			customgridview1.setMaxChildren(numcol * numcol);
 			customgridview1.setNumCol(numcol);
-			mygif=new GifObject();
+			mygif=new GifObject(MainActivity.this);
 		} else {
 
 			for (int i = 0; i <= customgridview1.getMaxChildren() - 1; i++) {
@@ -321,7 +312,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 				customgridview1.addView(child);
 			}
 			ColorList = customgridview1.getColorList();
-			mygif=new GifObject();
+			mygif=new GifObject(MainActivity.this);
 		}
 		customgridview1.setSelectedColor(SelectedColor);
 
@@ -620,20 +611,12 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		buttonplay = (Button) findViewById(R.id.play);
 		buttonplay.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View vue) {
-
-				// create animation programmatically
-				anim = new AnimationDrawable();
-				anim=mygif.getAnimation(MainActivity.this);
-
-/*				for (int i = 0; i <= 19; i++) {
-					anim.addFrame(new BitmapDrawable(getResources(),
-							bmps[i]), 100);
-				}*/
-
 				AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
+						//Exit dialog
 					}
 				}).setNegativeButton("Save", new DialogInterface.OnClickListener() {
 					@Override
@@ -641,12 +624,15 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 						//Save GIF Animation
 					}
 				});
+
 				final AlertDialog dialog = builder.create();
+				anim = new AnimationDrawable();
 				LayoutInflater inflater = getLayoutInflater();
 				View dialogLayout = inflater.inflate(R.layout.gifplaydialog, null);
 				dialog.setView(dialogLayout);
 				dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-				ImageView gifplayview=(ImageView)findViewById(R.id.gifplayview);
+				ImageView gifplayview=(ImageView)dialogLayout.findViewById(R.id.gifplayview);
+				anim=mygif.getAnimation(dialog.getContext(),gifplayview.getLayoutParams().width,gifplayview.getLayoutParams().height);
 				gifplayview.setBackgroundDrawable(anim);
 				final Handler startAnimation = new Handler() {
 					public void handleMessage(Message msg) {
@@ -654,8 +640,15 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 						anim.start();
 					}
 				};
-				Message msg = new Message();
-				startAnimation.sendMessage(msg);
+
+				dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+					@Override
+					public void onShow(DialogInterface dialog) {
+						Message msg = new Message();
+						startAnimation.sendMessage(msg);
+					}
+				});
+
 				dialog.show();
 			}
 		});
@@ -664,9 +657,9 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		buttonadd.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View vue) {
 				Bitmap bitmapimage=customgridview1.getCacheDrawing();
-				mygif.addImage(bitmapimage);
-				updateNumberPicker();
-				np.setValue(mygif.getSize());
+					mygif.addImage(np.getValue()+1,bitmapimage);
+					updateNumberPicker();
+					np.setValue(np.getValue()+1);
 				Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
 				ivimage.setImageDrawable(drawableimage);
 			}
@@ -676,18 +669,19 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		buttondeleteimage = (Button) findViewById(R.id.delete);
 		buttondeleteimage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View vue) {
-				mygif.deleteImage(np.getValue()-1);
-				Bitmap bitmapimage;
-				if(np.getValue()<=mygif.getSize()){
-					bitmapimage = mygif.getImage(np.getValue());
-				} else 	{
-					np.setValue(mygif.getSize());
-				bitmapimage = mygif.getImage(mygif.getSize()-1);
+				if(np.getValue()>=1) {
+					mygif.deleteImage(np.getValue());
+					Bitmap bitmapimage;
+					if (np.getValue() < mygif.getSize()) {
+						bitmapimage = mygif.getImage(np.getValue());
+					} else {
+						bitmapimage = mygif.getImage(np.getValue()-1);
+					}
+					updateNumberPicker();
+					Drawable drawableimage = new BitmapDrawable(getResources(), bitmapimage);
+					ivimage.setImageDrawable(drawableimage);
 				}
-				updateNumberPicker();
-				Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
-				ivimage.setImageDrawable(drawableimage);
-			}
+				}
 		});
 
 
@@ -697,13 +691,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 			@Override
 			public void onValueChange(NumberPicker picker, int oldVal, int newVal){
 				Bitmap bitmapimage;
-				if(newVal<=mygif.getSize()){
-					bitmapimage = mygif.getImage(newVal-1);
-	//			etposition.setText(String.valueOf(newVal));
-				} else 	{
-					bitmapimage=mygif.getImage(mygif.getSize()-1);
-	//			etposition.setText(mygif.getSize().toString());
-				}
+					bitmapimage = mygif.getImage(newVal);
 				Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
 				ivimage.setImageDrawable(drawableimage);
 			}
@@ -712,12 +700,14 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		ivimage = (ImageView) findViewById(R.id.ivImage);
 		ivimage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View vue) {
-				Bitmap bitmapimage=customgridview1.getCacheDrawing();
-				mygif.addImage(bitmapimage);
-				updateNumberPicker();
-				np.setValue(mygif.getSize());
-				Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
-				ivimage.setImageDrawable(drawableimage);
+				if(np.getValue()==0) {
+					Bitmap bitmapimage = customgridview1.getCacheDrawing();
+					mygif.addImage(1,bitmapimage);
+					updateNumberPicker();
+					np.setValue(1);
+					Drawable drawableimage = new BitmapDrawable(getResources(), bitmapimage);
+					ivimage.setImageDrawable(drawableimage);
+				}
 			}
 		});
 
@@ -742,8 +732,8 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 /*			String[] nums = new String[mygif.getSize()];
 			for (int i = 0; i < nums.length; i++)
 				nums[i] = Integer.toString(i);*/
-			np.setMinValue(1);
-			np.setMaxValue(mygif.getSize());
+			np.setMinValue(0);
+			np.setMaxValue(mygif.getSize()-1);
 			np.setWrapSelectorWheel(false);
 		//	np.setDisplayedValues(nums);
 		}
