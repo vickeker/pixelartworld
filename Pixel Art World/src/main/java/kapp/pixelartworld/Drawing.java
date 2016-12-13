@@ -11,9 +11,12 @@ public class Drawing {
     public int startposition;
     public ArrayList<Integer> colorlist;
 
-    public void Drawing(int colNum, ArrayList<Integer> colorList){
+    public Drawing(int colNum, ArrayList<Integer> colorList){
         colnum=colNum;
-        colorlist=colorList;
+        colorlist=new ArrayList<Integer>();
+        for (Integer c : colorList) {
+            colorlist.add(c);
+        }
     }
 
     public void setStartposition(int startPosition){

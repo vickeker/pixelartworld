@@ -1,5 +1,30 @@
 package kapp.pixelartworld;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.MotionEventCompat;
+import android.util.AttributeSet;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,32 +34,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.ScaleGestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class CustomGridView extends ViewGroup {
 
@@ -55,8 +54,8 @@ public class CustomGridView extends ViewGroup {
 
 	private ArrayList<Integer> mColorList;
 	private ArrayList<HashMap<String, Integer>> SavedActionList = null;
-	private ArrayList<Integer> mGlobalColorList; // Le premier element est
-	private boolean COLORIZE_FLAG=false;												// mMaxColumnCount
+	private ArrayList<Integer> mGlobalColorList; // Le premier element est mMaxColumnCount
+	private boolean COLORIZE_FLAG=false;
 	private Context mContext;
 	private ScaleGestureDetector mScaleDetector;
 	private GestureDetector mGestureDetector;
@@ -600,6 +599,26 @@ private Bitmap bitmap;
 			invalidate();
 			requestLayout();
 			return list;
+	}
+
+	public ArrayList<Integer> openDrawing(Drawing drawing){
+		ArrayList<Integer> drawinglist = new ArrayList<Integer>(drawing.getColorlist());
+		drawinglist.add(0,drawing.getColnum());
+		mGlobalColorList = drawinglist;
+		mColumnCount = mGlobalColorList.get(0);
+		mMaxColumnCount=mColumnCount;
+		mMaxChildren=mMaxColumnCount*mMaxColumnCount;
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for (int i = 1; i <= mGlobalColorList.size() - 1; i++) {
+			list.add(mGlobalColorList.get(i));
+		}
+		mStartingPosition=drawing.getStartposition();
+		mColorList.clear();
+		mColorList = list;
+		updatechild(list);
+		invalidate();
+		requestLayout();
+		return list;
 	}
 
 	public boolean saveDrawingName(String myfilename)

@@ -129,6 +129,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 	private Button buttondeleteimage;
 	private NumberPicker np;
 	private AnimationDrawable anim;
+	private Drawing drawing;
 
 
 	//For touch event test purpose
@@ -611,45 +612,99 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		buttonplay = (Button) findViewById(R.id.play);
 		buttonplay.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View vue) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+				if(mygif.getSize()>1) {
+					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						//Exit dialog
-					}
-				}).setNegativeButton("Save", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						//Save GIF Animation
-					}
-				});
+					builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							//Exit dialog
+						}
+					}).setNegativeButton("Save", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							//Save GIF Animation
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+							final Map<String, Object> map = new HashMap<String, Object>();
+							LinearLayout alertlayout = new LinearLayout(MainActivity.this);
+							LayoutParams params = new LayoutParams(-1, -2);
+							alertlayout.setLayoutParams(params);
+							alertlayout.setOrientation(LinearLayout.VERTICAL);
+							final EditText input = new EditText(MainActivity.this);
+							input.setHint(getString(R.string.name));
+							input.setInputType(InputType.TYPE_CLASS_TEXT);
+							alertlayout.addView(input);
+							alert.setView(alertlayout);
+							alert.setTitle(getString(R.string.save));
+							alert.setMessage("");
+							alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int whichButton) {
+									filename = input.getText().toString();
+									if (filename != "") {
+										boolean filenameexist = false;
+										try {
+											filenameexist = mygif.NameExist(MainActivity.this, filename);
+										} catch (ClassNotFoundException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										if (filenameexist) {
+											AlertDialog.Builder alert2 = new AlertDialog.Builder(MainActivity.this);
+											alert2.setTitle(getString(R.string.nameexist));
+											alert2.setMessage(getString(R.string.erasefile));
+											alert2.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+												public void onClick(DialogInterface dialog, int whichButton) {
+													//save gif drawing
+													mygif.generateGIF(MainActivity.this, filename);
+												}
+											});
+											alert2.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+												public void onClick(DialogInterface dialog, int whichButton) {
+												}
+											});
+											alert2.show();
+										} else {
+											//save gif drawing
+											mygif.generateGIF(MainActivity.this, filename);
+										}
 
-				final AlertDialog dialog = builder.create();
-				anim = new AnimationDrawable();
-				LayoutInflater inflater = getLayoutInflater();
-				View dialogLayout = inflater.inflate(R.layout.gifplaydialog, null);
-				dialog.setView(dialogLayout);
-				dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-				ImageView gifplayview=(ImageView)dialogLayout.findViewById(R.id.gifplayview);
-				anim=mygif.getAnimation(dialog.getContext(),gifplayview.getLayoutParams().width,gifplayview.getLayoutParams().height);
-				gifplayview.setBackgroundDrawable(anim);
-				final Handler startAnimation = new Handler() {
-					public void handleMessage(Message msg) {
-						super.handleMessage(msg);
-						anim.start();
-					}
-				};
+									}
+								}
+							});
+							alert.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int whichButton) {
+								}
+							});
+							alert.show();
+						}
+					});
 
-				dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-					@Override
-					public void onShow(DialogInterface dialog) {
-						Message msg = new Message();
-						startAnimation.sendMessage(msg);
-					}
-				});
+					final AlertDialog dialog = builder.create();
+					anim = new AnimationDrawable();
+					LayoutInflater inflater = getLayoutInflater();
+					View dialogLayout = inflater.inflate(R.layout.gifplaydialog, null);
+					dialog.setView(dialogLayout);
+					dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+					ImageView gifplayview = (ImageView) dialogLayout.findViewById(R.id.gifplayview);
+					anim = mygif.getAnimation(dialog.getContext(), gifplayview.getLayoutParams().width, gifplayview.getLayoutParams().height);
+					gifplayview.setBackgroundDrawable(anim);
+					final Handler startAnimation = new Handler() {
+						public void handleMessage(Message msg) {
+							super.handleMessage(msg);
+							anim.start();
+						}
+					};
 
-				dialog.show();
+					dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+						@Override
+						public void onShow(DialogInterface dialog) {
+							Message msg = new Message();
+							startAnimation.sendMessage(msg);
+						}
+					});
+
+					dialog.show();
+				}
 			}
 		});
 
@@ -657,9 +712,12 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		buttonadd.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View vue) {
 				Bitmap bitmapimage=customgridview1.getCacheDrawing();
-					mygif.addImage(np.getValue()+1,bitmapimage);
-					updateNumberPicker();
-					np.setValue(np.getValue()+1);
+				mygif.addImage(np.getValue()+1,bitmapimage);
+				drawing = new Drawing(customgridview1.getNumCol(),ColorList);
+ 				drawing.setStartposition(customgridview1.getStartingPosition());
+				mygif.addDrawing(np.getValue(),drawing);
+				updateNumberPicker();
+				np.setValue(np.getValue()+1);
 				Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
 				ivimage.setImageDrawable(drawableimage);
 			}
@@ -694,6 +752,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 					bitmapimage = mygif.getImage(newVal);
 				Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
 				ivimage.setImageDrawable(drawableimage);
+
 			}
 		});
 
@@ -707,6 +766,26 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 					np.setValue(1);
 					Drawable drawableimage = new BitmapDrawable(getResources(), bitmapimage);
 					ivimage.setImageDrawable(drawableimage);
+					drawing = new Drawing(customgridview1.getNumCol(),ColorList);
+					drawing.setStartposition(customgridview1.getStartingPosition());
+					mygif.addDrawing(0,drawing);
+				} else {
+					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+					builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							ColorList=customgridview1.openDrawing(mygif.getDrawing(np.getValue()-1));
+						}
+					}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+						}
+					});
+
+					builder.setTitle("Edit drawing?");
+					builder.setMessage("Note: The current drawing will be lost if not already saved or added to the animation");
+					builder.show();
 				}
 			}
 		});
