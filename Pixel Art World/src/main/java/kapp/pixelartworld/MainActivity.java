@@ -643,7 +643,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 									if (filename != "") {
 										boolean filenameexist = false;
 										try {
-											filenameexist = mygif.NameExist(MainActivity.this, filename);
+											filenameexist = mygif.NameExist(filename);
 										} catch (ClassNotFoundException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
@@ -655,7 +655,17 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 											alert2.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												public void onClick(DialogInterface dialog, int whichButton) {
 													//save gif drawing
-													mygif.generateGIF(MainActivity.this, filename);
+													try {
+														mygif.savedrawinglist(filename);
+														mygif.generateGIF(filename);
+													} catch (ClassNotFoundException e) {
+														// TODO Auto-generated catch block
+														e.printStackTrace();
+														CharSequence text = "Error, couldnt save the GIF";
+														int duration = Toast.LENGTH_LONG;
+														Toast toast = Toast.makeText(MainActivity.this, text, duration);
+														toast.show();
+													}
 												}
 											});
 											alert2.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -665,7 +675,18 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 											alert2.show();
 										} else {
 											//save gif drawing
-											mygif.generateGIF(MainActivity.this, filename);
+											try {
+												mygif.saveGifName(filename);
+												mygif.savedrawinglist(filename);
+												mygif.generateGIF(filename);
+											} catch (ClassNotFoundException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+												CharSequence text = "Error, couldnt save the GIF";
+												int duration = Toast.LENGTH_LONG;
+												Toast toast = Toast.makeText(MainActivity.this, text, duration);
+												toast.show();
+											}
 										}
 
 									}
@@ -686,7 +707,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 					dialog.setView(dialogLayout);
 					dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 					ImageView gifplayview = (ImageView) dialogLayout.findViewById(R.id.gifplayview);
-					anim = mygif.getAnimation(dialog.getContext(), gifplayview.getLayoutParams().width, gifplayview.getLayoutParams().height);
+					anim = mygif.getAnimation(gifplayview.getLayoutParams().width, gifplayview.getLayoutParams().height);
 					gifplayview.setBackgroundDrawable(anim);
 					final Handler startAnimation = new Handler() {
 						public void handleMessage(Message msg) {
