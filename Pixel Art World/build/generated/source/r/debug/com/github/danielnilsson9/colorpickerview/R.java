@@ -19,8 +19,8 @@ public final class R {
 		public static final int colorpickerview__required_padding = 0x7f08005f;
 	}
 	public static final class drawable {
-		public static final int colorpickerview__btn_background = 0x7f02006e;
-		public static final int colorpickerview__btn_background_pressed = 0x7f02006f;
+		public static final int colorpickerview__btn_background = 0x7f02006f;
+		public static final int colorpickerview__btn_background_pressed = 0x7f020070;
 	}
 	public static final class id {
 		public static final int colorpickerview__color_panel_new = 0x7f0d0011;

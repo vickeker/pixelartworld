@@ -258,15 +258,21 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 						New();
 						break;
 					case 1:
-						Share();
-						break;
-					case 2:
-						Delete();
-						break;
-					case 3:
 						Open();
 						break;
+					case 2:
+						NewGif();
+						break;
+					case 3:
+						OpenGif();
+						break;
 					case 4:
+						Delete();
+						break;
+					case 5:
+						Share();
+						break;
+					case 6:
 						Settings();
 						break;}
 				mDrawerList.setItemChecked(position, true);
@@ -1171,6 +1177,105 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		});
 		alert.show();
 
+	}
+
+	public void NewGif(){
+		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+		alert.setTitle("New GIF");
+		alert.setMessage("Start a new GIF");
+		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				mygif.GifClear();
+				updateNumberPicker();
+				ivimage.setBackgroundResource(R.drawable.ic_add);
+			}
+		});
+		alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+			}
+		});
+		alert.show();
+	}
+
+	public void OpenGif(){
+		final ArrayList<HashMap<String, Object>> filenamelist = new ArrayList<HashMap<String, Object>>();
+		ArrayList<String> list = new ArrayList<String>();
+		list = mygif.readGifName();
+		if (list != null) {
+			for (int i = 0; i <= list.size() - 1; i++) {
+				HashMap<String, Object> h = new HashMap<String, Object>();
+				h.put("name", list.get(i));
+				filenamelist.add(h);
+			}
+		} else {
+			CharSequence text ="No saved GIF";
+			int duration = Toast.LENGTH_LONG;
+			Toast toast = Toast.makeText(MainActivity.this, text, duration);
+			toast.show();
+		}
+		if (filenamelist.size() != 0) {
+			final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+			LayoutInflater inflater = getLayoutInflater();
+			View convertView = (View) inflater.inflate(R.layout.filenamelist, null);
+			alertDialog.setView(convertView);
+			ListView lv = (ListView) convertView.findViewById(R.id.namelistview);
+
+			final SimpleAdapter adapter = new SimpleAdapter(MainActivity.this, filenamelist, R.layout.file, new String[]{"name"}, new int[]{R.id.file_name}) {
+				@Override
+				public View getView(int position, View convertView,
+									ViewGroup parent) {
+					TextView textView;
+					if (convertView == null) {
+						LayoutInflater inflater = (LayoutInflater) LayoutInflater.from(MainActivity.this);
+						convertView = (View) inflater.inflate(R.layout.file, null);
+						textView = (TextView) convertView
+								.findViewById(R.id.file_name);
+					} else {
+						textView = (TextView) convertView
+								.findViewById(R.id.file_name);
+					}
+					textView.setText(filenamelist.get(position).get("name").toString());
+
+					return convertView;
+				}
+			};
+
+
+			lv.setAdapter(adapter);
+			alertDialog.setTitle("Open a GIF");
+			final AlertDialog alert = alertDialog.show();
+
+			lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View vue,
+										int position, long id) {
+					DrawingToOpen = filenamelist.get(position).get("name").toString();
+					mygif.GifClear();
+					mygif.readDrawingList(DrawingToOpen);
+					ArrayList<Integer> mResult = new ArrayList<Integer>();
+					mResult=customgridview1.openDrawing(mygif.getDrawing(0));
+					if (mResult != null) {
+						ColorList = mResult;
+						updateNumberPicker();
+						np.setValue(1);
+						Bitmap bitmapimage;
+						bitmapimage = mygif.getImage(1);
+						Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
+						ivimage.setImageDrawable(drawableimage);
+					} else {
+						CharSequence text = getString(R.string.cantfind) + " " + DrawingToOpen;
+						int duration = Toast.LENGTH_LONG;
+						Toast toast = Toast.makeText(MainActivity.this, text, duration);
+						toast.show();
+					}
+					alert.dismiss();
+				}
+			});
+			alertDialog.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton) {
+				}
+			});
+		}
 	}
 
 	public void Delete() {

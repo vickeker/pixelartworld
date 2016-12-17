@@ -23,16 +23,21 @@
     </string-array>
 
     <string-array name="maindrawermenu">
-        <item>New</item>
+        <item>New Drawing</item>
+        <item>Open Drawing</item>
+        <item>New GIF</item>
+        <item>Open GIF</item>
         <item>Share</item>
         <item>Delete</item>
-        <item>Open</item>
         <item>Settings</item>
      </string-array>
 
 
         <integer-array name="maindrawermenuimage">
             <item>@drawable/action_new</item>
+            <item>@drawable/ic_perm_media</item>
+            <item>@drawable/action_new_gif</item>
+            <item>@drawable/ic_perm_media_gif</item>
             <item>@drawable/ic_share</item>
             <item>@drawable/ic_delete</item>
             <item>@drawable/ic_perm_media</item>

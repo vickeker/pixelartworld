@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
     <string-array name="maindrawermenu">
-        <item>Nouveau</item>
+        <item>Nouveau Dessin</item>
+        <item>Ouvrir Dessin</item>
+        <item>Nouveau GIF</item>
+        <item>Ouvrir GIF</item>
         <item>Partagé</item>
         <item>Supprimé</item>
-        <item>Ouvrir</item>
         <item>Préférences</item>
         </string-array>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Revenir à l\'accueil"</string>

@@ -2,10 +2,12 @@
 <resources>
 
     <string-array name="maindrawermenu">
-        <item>Nouveau</item>
+        <item>Nouveau Dessin</item>
+        <item>Ouvrir Dessin</item>
+        <item>Nouveau GIF</item>
+        <item>Ouvrir GIF</item>
         <item>Partagé</item>
         <item>Supprimé</item>
-        <item>Ouvrir</item>
         <item>Préférences</item>
         </string-array>
 </resources>
