@@ -18,14 +18,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -87,7 +90,7 @@ public class GifObject {
         for(int i=1;i<=GifList.size()-1;i++){
             Bitmap b = Bitmap.createScaledBitmap(GifList.get(i), width, height, false);
         Drawable frame = new BitmapDrawable(context.getResources(), b);
-        animDrawable.addFrame(frame, 200);
+        animDrawable.addFrame(frame, 1000);
         }
 
         return animDrawable;
@@ -178,39 +181,47 @@ public class GifObject {
         return null;
     }
 
-    public void savedrawinglist(String myfilename)
-        throws ClassNotFoundException {
+    public String getJsonString(){
         JSONObject JDrawingList=new JSONObject();
+        String data;
         try{
-        for(int i=1;i<=DrawingList.size()-1;i++){
-            JSONObject JDrawing=new JSONObject();
-              JDrawing.put("colnum",DrawingList.get(i).getColnum());
-              JDrawing.put("startpos",DrawingList.get(i).getStartposition());
-              JSONArray jsonArr = new JSONArray();
-              for(int b:DrawingList.get(i).getColorlist()){
-                  jsonArr.put(b);
-              }
-              JDrawing.put("intlist",jsonArr);
-            String encodedImage = getStringFromBitmap(GifList.get(i));
-            JDrawing.put("bitmap",encodedImage);
-            JDrawingList.put("Drawing",JDrawing);
+            for(int i=0;i<=DrawingList.size()-1;i++){
+                JSONObject JDrawing=new JSONObject();
+                JDrawing.put("colnum",DrawingList.get(i).getColnum());
+                JDrawing.put("startpos",DrawingList.get(i).getStartposition());
+                JSONArray jsonArr = new JSONArray();
+                for(int b:DrawingList.get(i).getColorlist()){
+                    jsonArr.put(b);
+                }
+                JDrawing.put("intlist",jsonArr);
+                String encodedImage = getStringFromBitmap(GifList.get(i+1));
+                JDrawing.put("bitmap", encodedImage);
 
-        }
+                JDrawingList.put("Drawing"+String.valueOf(i),JDrawing);
+
+            }
+            data=JDrawingList.toString();
         }
         catch (JSONException ex) {
 
             ex.printStackTrace();
+            return  null;
         }
+        return data;
+    }
+
+    public void savedrawinglist(String myfilename)
+        throws ClassNotFoundException {
+        String data= getJsonString();
         try {
             File file = context.getFilesDir();
             File filename = new File(file, myfilename);
-            FileOutputStream fos = new FileOutputStream(filename);
-            ObjectOutputStream out = new ObjectOutputStream(fos);
-            out.writeObject(JDrawingList);
+            Writer out=new BufferedWriter(new FileWriter(filename));
+            out.write(data);
             out.close();
         }
         catch (IOException e) {
-
+            e.printStackTrace();
         }
 
     }
@@ -263,6 +274,35 @@ public class GifObject {
         return list;
     }
 
+    public void setGiffromJsonString(String str){
+        try {
+            JSONObject JDrawingList = new JSONObject(str);
+            Iterator<String> keys = JDrawingList.keys();
+            GifClear();
+            while( keys.hasNext() ) {
+                String key = keys.next();
+                JSONObject JDrawing = JDrawingList.getJSONObject(key);
+                int col = JDrawing.getInt("colnum");
+                int startpos = JDrawing.getInt("startpos");
+
+                JSONArray JIntList = JDrawing.getJSONArray("intlist");
+                ArrayList<Integer> IntList = new ArrayList<Integer>();
+                for (int i = 0; i <= JIntList.length() - 1; i++) {
+                    IntList.add(JIntList.getInt(i));
+                }
+                Drawing drawing = new Drawing(col, IntList);
+                drawing.setStartposition(startpos);
+                DrawingList.add(drawing);
+                String bitmapstr=JDrawing.getString("bitmap");
+                bm= getBitmapFromString(bitmapstr);
+                GifList.add(bm);
+            }
+        }
+        catch(JSONException e){
+            e.printStackTrace();
+        }
+    }
+
     public void readDrawingList(String myfilename) {
         String str;
         try {
@@ -278,35 +318,7 @@ public class GifObject {
             }
             str=stringBuilder.toString();
             in.close();
-
-            try {
-                JSONObject JDrawingList = new JSONObject(str);
-                Iterator<String> keys = JDrawingList.keys();
-                GifList.clear();
-                DrawingList.clear();
-                bm= BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_add);
-                GifList.add(bm);
-                while( keys.hasNext() ) {
-                    String key = keys.next();
-                    JSONObject JDrawing = JDrawingList.getJSONObject(key);
-                    int col = JDrawing.getInt("colnum");
-                    int startpos = JDrawing.getInt("startpos");
-
-                    JSONArray JIntList = JDrawing.getJSONArray("intlist");
-                    ArrayList<Integer> IntList = new ArrayList<Integer>();
-                    for (int i = 0; i <= JIntList.length() - 1; i++) {
-                        IntList.add(JIntList.getInt(i));
-                    }
-                    Drawing drawing = new Drawing(col, IntList);
-                    drawing.setStartposition(startpos);
-                    DrawingList.add(drawing);
-                    String bitmapstr=JDrawing.getString("bitmap");
-                    bm= getBitmapFromString(bitmapstr);
-                    GifList.add(bm);
-                }
-            }
-            catch(JSONException e){
-            }
+            setGiffromJsonString(str);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -267,10 +267,10 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 						OpenGif();
 						break;
 					case 4:
-						Delete();
+						Share();
 						break;
 					case 5:
-						Share();
+						Delete();
 						break;
 					case 6:
 						Settings();
@@ -296,6 +296,11 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 			selectioncolorlist.add(newColor);
 		}
 
+		mygif=new GifObject(MainActivity.this);
+		np = (NumberPicker) findViewById(R.id.numberPicker);
+		updateNumberPicker();
+		ivimage = (ImageView) findViewById(R.id.ivImage);
+
 		if (savedInstanceState != null) {
 			SelectedColor = savedInstanceState.getInt("selectedcolor");
 			ColorList = savedInstanceState.getIntegerArrayList("colorlist");
@@ -308,7 +313,13 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 			int numcol = savedInstanceState.getInt("numcol");
 			customgridview1.setMaxChildren(numcol * numcol);
 			customgridview1.setNumCol(numcol);
-			mygif=new GifObject(MainActivity.this);
+			mygif.setGiffromJsonString(savedInstanceState.getString("gif"));
+			updateNumberPicker();
+			np.setValue(savedInstanceState.getInt("npvalue"));
+			Bitmap bitmapimage;
+			bitmapimage = mygif.getImage(np.getValue());
+			Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
+			ivimage.setImageDrawable(drawableimage);
 		} else {
 
 			for (int i = 0; i <= customgridview1.getMaxChildren() - 1; i++) {
@@ -319,7 +330,6 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 				customgridview1.addView(child);
 			}
 			ColorList = customgridview1.getColorList();
-			mygif=new GifObject(MainActivity.this);
 		}
 		customgridview1.setSelectedColor(SelectedColor);
 
@@ -769,9 +779,6 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 				}
 		});
 
-
-		np = (NumberPicker) findViewById(R.id.numberPicker);
-		updateNumberPicker();
 		np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
 			@Override
 			public void onValueChange(NumberPicker picker, int oldVal, int newVal){
@@ -783,7 +790,6 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 			}
 		});
 
-		ivimage = (ImageView) findViewById(R.id.ivImage);
 		ivimage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View vue) {
 				if(np.getValue()==0) {
@@ -1187,7 +1193,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 			public void onClick(DialogInterface dialog, int whichButton) {
 				mygif.GifClear();
 				updateNumberPicker();
-				ivimage.setBackgroundResource(R.drawable.ic_add);
+				ivimage.setImageDrawable(getResources().getDrawable(R.drawable.ic_add));
 			}
 		});
 		alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -1250,11 +1256,10 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 				public void onItemClick(AdapterView<?> parent, View vue,
 										int position, long id) {
 					DrawingToOpen = filenamelist.get(position).get("name").toString();
-					mygif.GifClear();
 					mygif.readDrawingList(DrawingToOpen);
+					if (mygif.getSize()!=0 && mygif.DrawingList.size()!=0) {
 					ArrayList<Integer> mResult = new ArrayList<Integer>();
 					mResult=customgridview1.openDrawing(mygif.getDrawing(0));
-					if (mResult != null) {
 						ColorList = mResult;
 						updateNumberPicker();
 						np.setValue(1);
@@ -1282,6 +1287,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		final ArrayList<String> selectedFileList = new ArrayList<String>();
 		final ArrayList<HashMap<String, Object>> filenamelist = new ArrayList<HashMap<String, Object>>();
 		ArrayList<String> list = new ArrayList<String>();
+
 		list = customgridview1.readDrawingName();
 		if (list != null) {
 			for (int i = 0; i <= list.size() - 1; i++) {
@@ -1378,6 +1384,9 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		outState.putInt("numcol", customgridview1.getNumCol());
 		outState.putSerializable("savedactionlist", (Serializable) customgridview1.getSavedActionList());
 		outState.putInt("selectedcolorid", SelectedColorId);
+		String gifstring=mygif.getJsonString();
+		outState.putString("gif",gifstring);
+		outState.putInt("npvalue",np.getValue());
 		super.onSaveInstanceState(outState);
 	}
 

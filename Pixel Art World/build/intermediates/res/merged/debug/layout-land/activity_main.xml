@@ -73,48 +73,71 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/menu_moveleft"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="5dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/menu_button"
+                    android:gravity="center_vertical|center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_marginTop="10dp"   >
 
                     <Button
-                        android:id="@+id/Moveleft"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/ic_keyboard_arrow_left" />
+                        android:id="@+id/add"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_add"
+ />
 
                     <Button
-                        android:id="@+id/Movedown"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/ic_keyboard_arrow_down" />
+                        android:id="@+id/delete"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_remove"
+                        android:layout_marginLeft="10dp"         />
+                    </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical|center_horizontal">
+
+                    <NumberPicker
+                        android:layout_height="wrap_content"
+                        android:id="@+id/numberPicker"
+                        android:layout_width="30dp"
+         />
                     <Button
-                        android:id="@+id/Zoomout"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/ic_zoom_out" />
+                        android:id="@+id/play"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_play"
+                        android:layout_marginLeft="10dp"
+                        />
+</LinearLayout>
+                    <ImageView
+                        android:id="@+id/ivImage"
+                        android:layout_height="100dp"
+                        android:background="@drawable/ic_add"
+
+                        android:layout_width="100dp"/>
+
+
 
                 </LinearLayout>
-
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="35dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/logo"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_toLeftOf="@+id/menu_moveleft" />
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:background="@drawable/logo"-->
+                    <!--android:layout_marginBottom="30dp"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:layout_toLeftOf="@+id/menu_moveleft" />-->
             </RelativeLayout>
 
             <RelativeLayout
@@ -399,12 +422,46 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/menu_moveleft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="5dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_alignParentLeft="true">
+
+                    <Button
+                        android:id="@+id/Moveleft"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/ic_keyboard_arrow_left" />
+
+                    <Button
+                        android:id="@+id/Movedown"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/ic_keyboard_arrow_down" />
+
+                    <Button
+                        android:id="@+id/Zoomout"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/ic_zoom_out" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="5dp"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
