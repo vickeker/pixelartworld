@@ -207,8 +207,7 @@
                             android:layout_height="25dp"
                             android:layout_gravity="center"
                             android:background="#fb0000"
-                            android:focusable="true"
-                            android:focusableInTouchMode="true"/>
+                            />
                     </FrameLayout>
 
                     <FrameLayout
