@@ -130,6 +130,9 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 	private NumberPicker np;
 	private AnimationDrawable anim;
 	private Drawing drawing;
+	private Button gifsetting;
+	private int giftimeframe=200;
+	private boolean	gifloop=true;
 
 
 	//For touch event test purpose
@@ -823,6 +826,41 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 			}
 		});
 
+		gifsetting = (Button) findViewById(R.id.gifsettings);
+		gifsetting.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View vue) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+				LayoutInflater inflater = getLayoutInflater();
+				View convertView = (View) inflater.inflate(R.layout.gifsettingalert, null);
+				builder.setView(convertView);
+				TextView tv_timeframe = (TextView) convertView.findViewById(R.id.tv_timeframe);
+				final EditText et_timeframe  = (EditText) convertView.findViewById(R.id.et_timeframe);
+				final CheckBox cb_loop = (CheckBox) convertView.findViewById(R.id.cb_loop);
+				cb_loop.setChecked(gifloop);
+				et_timeframe.setText(String.valueOf(giftimeframe));
+				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+					gifloop=cb_loop.isChecked();
+						mygif.setLoop(gifloop);
+					if(Integer.parseInt(et_timeframe.getText().toString())!=0) {
+						giftimeframe = Integer.parseInt(et_timeframe.getText().toString());
+					mygif.setTimeFrame(giftimeframe);
+					}
+					}
+				}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+					}
+				});
+
+				builder.setTitle("GIF Settings");
+				builder.show();
+			}
+		});
+
+
+
 		// ATTENTION: This was auto-generated to implement the App Indexing API.
 		// See https://g.co/AppIndexing/AndroidStudio for more information.
 		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -951,6 +989,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 	public void Share() {
 		mDrawerLayout.closeDrawer(mLinearDrawer);
 		final ArrayList<HashMap<String, Object>> filelist = new ArrayList<HashMap<String, Object>>(customgridview1.getSavedJpeg());
+		filelist.addAll(mygif.getSavedGif());
 		if (filelist.size() != 0) {
 			final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
 			LayoutInflater inflater = getLayoutInflater();
@@ -1047,8 +1086,12 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 												int position, long id) {
 							// what to do depending on the app choosen
 							Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-							sharingIntent.setType("image/jpeg");
-							Uri screenshotUri = Uri.parse("file://"+jpegpath);
+							if(jpegpath.substring(jpegpath.length() - 4).equals(".gif")){
+								sharingIntent.setType("image/gif");
+							} else {
+								sharingIntent.setType("image/jpeg");
+							}
+								Uri screenshotUri = Uri.parse("file://"+jpegpath);
 							PackageManager pm=getPackageManager();
 
 
@@ -1082,9 +1125,11 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 									try {
 
 										Intent waIntent = new Intent(Intent.ACTION_SEND);
-										waIntent.setType("image/jpeg");
-
-
+										if(jpegpath.substring(jpegpath.length() - 4).equals(".gif")){
+											waIntent.setType("image/gif");
+										} else {
+											waIntent.setType("image/jpeg");
+										}
 										PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
 
 										waIntent.setPackage("com.whatsapp");
@@ -1108,7 +1153,11 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 										for(ResolveInfo resInfo : resInfos){
 											String packageName=resInfo.activityInfo.packageName;
 											Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
-											targetedShareIntent.setType("image/jpeg");
+											if(jpegpath.substring(jpegpath.length() - 4).equals(".gif")){
+												targetedShareIntent.setType("image/gif");
+											} else {
+												targetedShareIntent.setType("image/jpeg");
+											}
 											targetedShareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Pixel Art World drawing");
 
 
@@ -1287,8 +1336,13 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		final ArrayList<String> selectedFileList = new ArrayList<String>();
 		final ArrayList<HashMap<String, Object>> filenamelist = new ArrayList<HashMap<String, Object>>();
 		ArrayList<String> list = new ArrayList<String>();
-
 		list = customgridview1.readDrawingName();
+		ArrayList<String> listgif=new ArrayList<String>();
+		listgif=mygif.readGifName();
+		for(int i =0;i<=mygif.readGifName().size()-1;i++){
+
+			list.add(listgif.get(i)+".gif");
+		}
 		if (list != null) {
 			for (int i = 0; i <= list.size() - 1; i++) {
 				HashMap<String, Object> h = new HashMap<String, Object>();
@@ -1360,7 +1414,18 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 				public void onClick(DialogInterface dialog, int whichButton) {
 					if (selectedFileList.size() != 0) {
 						for (int i = 0; i <= selectedFileList.size() - 1; i++) {
-							customgridview1.deletefile(selectedFileList.get(i));
+						String str=selectedFileList.get(i);
+							if (str.length() > 4) {
+									if(str.substring(str.length() - 4).equals(".gif")){
+										str.replace(".gif", "");
+										mygif.deletefile(str);
+									} else {
+										customgridview1.deletefile(str);
+									}
+							} else {
+								customgridview1.deletefile(str);
+							}
+
 						}
 					}
 				}

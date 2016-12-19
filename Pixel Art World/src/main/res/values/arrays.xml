@@ -40,7 +40,6 @@
             <item>@drawable/ic_perm_media_gif</item>
             <item>@drawable/ic_share</item>
             <item>@drawable/ic_delete</item>
-            <item>@drawable/ic_perm_media</item>
             <item>@drawable/ic_settings</item>
         </integer-array>
 

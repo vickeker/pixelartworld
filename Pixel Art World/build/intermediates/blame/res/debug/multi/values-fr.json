@@ -12,15 +12,7 @@
                     "endOffset": 393
                 },
                 "from": {
-                    "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\arrays.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 59,
-                        "endLine": 11,
-                        "endColumn": 23,
-                        "endOffset": 355
-                    }
+                    "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\arrays.xml"
                 }
             },
             {
@@ -1156,20 +1148,27 @@
                     "startLine": 105,
                     "startColumn": 4,
                     "startOffset": 11174,
-                    "endColumn": 81,
-                    "endOffset": 11251
+                    "endColumn": 77,
+                    "endOffset": 11247
                 },
                 "from": {
-                    "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
+                    "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1258,
+                        "endColumn": 77,
+                        "endOffset": 1331
+                    }
                 }
             },
             {
                 "to": {
                     "startLine": 106,
                     "startColumn": 4,
-                    "startOffset": 11256,
+                    "startOffset": 11252,
                     "endColumn": 93,
-                    "endOffset": 11345
+                    "endOffset": 11341
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1179,9 +1178,9 @@
                 "to": {
                     "startLine": 107,
                     "startColumn": 4,
-                    "startOffset": 11350,
+                    "startOffset": 11346,
                     "endColumn": 76,
-                    "endOffset": 11422
+                    "endOffset": 11418
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1191,9 +1190,9 @@
                 "to": {
                     "startLine": 108,
                     "startColumn": 4,
-                    "startOffset": 11427,
+                    "startOffset": 11423,
                     "endColumn": 62,
-                    "endOffset": 11485
+                    "endOffset": 11481
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.14.1\\res\\values-fr\\values-fr.xml"
@@ -1203,9 +1202,9 @@
                 "to": {
                     "startLine": 109,
                     "startColumn": 4,
-                    "startOffset": 11490,
+                    "startOffset": 11486,
                     "endColumn": 106,
-                    "endOffset": 11592
+                    "endOffset": 11588
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1215,9 +1214,9 @@
                 "to": {
                     "startLine": 110,
                     "startColumn": 4,
-                    "startOffset": 11597,
+                    "startOffset": 11593,
                     "endColumn": 123,
-                    "endOffset": 11716
+                    "endOffset": 11712
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1227,9 +1226,9 @@
                 "to": {
                     "startLine": 111,
                     "startColumn": 4,
-                    "startOffset": 11721,
+                    "startOffset": 11717,
                     "endColumn": 110,
-                    "endOffset": 11827
+                    "endOffset": 11823
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1239,9 +1238,9 @@
                 "to": {
                     "startLine": 112,
                     "startColumn": 4,
-                    "startOffset": 11832,
+                    "startOffset": 11828,
                     "endColumn": 105,
-                    "endOffset": 11933
+                    "endOffset": 11929
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1251,9 +1250,9 @@
                 "to": {
                     "startLine": 113,
                     "startColumn": 4,
-                    "startOffset": 11938,
+                    "startOffset": 11934,
                     "endColumn": 131,
-                    "endOffset": 12065
+                    "endOffset": 12061
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1263,9 +1262,9 @@
                 "to": {
                     "startLine": 114,
                     "startColumn": 4,
-                    "startOffset": 12070,
+                    "startOffset": 12066,
                     "endColumn": 95,
-                    "endOffset": 12161
+                    "endOffset": 12157
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1275,9 +1274,9 @@
                 "to": {
                     "startLine": 115,
                     "startColumn": 4,
-                    "startOffset": 12166,
+                    "startOffset": 12162,
                     "endColumn": 96,
-                    "endOffset": 12258
+                    "endOffset": 12254
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1287,9 +1286,9 @@
                 "to": {
                     "startLine": 116,
                     "startColumn": 4,
-                    "startOffset": 12263,
+                    "startOffset": 12259,
                     "endColumn": 131,
-                    "endOffset": 12390
+                    "endOffset": 12386
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1299,9 +1298,9 @@
                 "to": {
                     "startLine": 117,
                     "startColumn": 4,
-                    "startOffset": 12395,
+                    "startOffset": 12391,
                     "endColumn": 109,
-                    "endOffset": 12500
+                    "endOffset": 12496
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1311,9 +1310,9 @@
                 "to": {
                     "startLine": 118,
                     "startColumn": 4,
-                    "startOffset": 12505,
+                    "startOffset": 12501,
                     "endColumn": 86,
-                    "endOffset": 12587
+                    "endOffset": 12583
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1323,9 +1322,9 @@
                 "to": {
                     "startLine": 119,
                     "startColumn": 4,
-                    "startOffset": 12592,
+                    "startOffset": 12588,
                     "endColumn": 95,
-                    "endOffset": 12683
+                    "endOffset": 12679
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1335,9 +1334,9 @@
                 "to": {
                     "startLine": 120,
                     "startColumn": 4,
-                    "startOffset": 12688,
+                    "startOffset": 12684,
                     "endColumn": 36,
-                    "endOffset": 12720
+                    "endOffset": 12716
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1347,9 +1346,9 @@
                 "to": {
                     "startLine": 121,
                     "startColumn": 4,
-                    "startOffset": 12725,
+                    "startOffset": 12721,
                     "endColumn": 56,
-                    "endOffset": 12777
+                    "endOffset": 12773
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1359,9 +1358,9 @@
                 "to": {
                     "startLine": 122,
                     "startColumn": 4,
-                    "startOffset": 12782,
+                    "startOffset": 12778,
                     "endColumn": 53,
-                    "endOffset": 12831
+                    "endOffset": 12827
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1371,9 +1370,9 @@
                 "to": {
                     "startLine": 123,
                     "startColumn": 4,
-                    "startOffset": 12836,
+                    "startOffset": 12832,
                     "endColumn": 79,
-                    "endOffset": 12911
+                    "endOffset": 12907
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1383,9 +1382,9 @@
                 "to": {
                     "startLine": 124,
                     "startColumn": 4,
-                    "startOffset": 12916,
+                    "startOffset": 12912,
                     "endColumn": 84,
-                    "endOffset": 12996
+                    "endOffset": 12992
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1395,9 +1394,9 @@
                 "to": {
                     "startLine": 125,
                     "startColumn": 4,
-                    "startOffset": 13001,
+                    "startOffset": 12997,
                     "endColumn": 73,
-                    "endOffset": 13070
+                    "endOffset": 13066
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1407,9 +1406,9 @@
                 "to": {
                     "startLine": 126,
                     "startColumn": 4,
-                    "startOffset": 13075,
+                    "startOffset": 13071,
                     "endColumn": 55,
-                    "endOffset": 13126
+                    "endOffset": 13122
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1419,9 +1418,9 @@
                 "to": {
                     "startLine": 127,
                     "startColumn": 4,
-                    "startOffset": 13131,
+                    "startOffset": 13127,
                     "endColumn": 110,
-                    "endOffset": 13237
+                    "endOffset": 13233
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-places\\9.4.0\\res\\values-fr\\values.xml"
@@ -1431,9 +1430,9 @@
                 "to": {
                     "startLine": 128,
                     "startColumn": 4,
-                    "startOffset": 13242,
+                    "startOffset": 13238,
                     "endColumn": 99,
-                    "endOffset": 13337
+                    "endOffset": 13333
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-places\\9.4.0\\res\\values-fr\\values.xml"
@@ -1443,9 +1442,9 @@
                 "to": {
                     "startLine": 129,
                     "startColumn": 4,
-                    "startOffset": 13342,
+                    "startOffset": 13338,
                     "endColumn": 44,
-                    "endOffset": 13382
+                    "endOffset": 13378
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1455,9 +1454,9 @@
                 "to": {
                     "startLine": 130,
                     "startColumn": 4,
-                    "startOffset": 13387,
+                    "startOffset": 13383,
                     "endColumn": 70,
-                    "endOffset": 13453
+                    "endOffset": 13449
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1467,9 +1466,9 @@
                 "to": {
                     "startLine": 131,
                     "startColumn": 4,
-                    "startOffset": 13458,
+                    "startOffset": 13454,
                     "endColumn": 52,
-                    "endOffset": 13506
+                    "endOffset": 13502
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1479,9 +1478,9 @@
                 "to": {
                     "startLine": 132,
                     "startColumn": 4,
-                    "startOffset": 13511,
+                    "startOffset": 13507,
                     "endColumn": 54,
-                    "endOffset": 13561
+                    "endOffset": 13557
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1491,9 +1490,9 @@
                 "to": {
                     "startLine": 133,
                     "startColumn": 4,
-                    "startOffset": 13566,
+                    "startOffset": 13562,
                     "endColumn": 48,
-                    "endOffset": 13610
+                    "endOffset": 13606
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\src\\main\\res\\values-fr\\strings.xml"
@@ -1503,9 +1502,9 @@
                 "to": {
                     "startLine": 134,
                     "startColumn": 4,
-                    "startOffset": 13615,
+                    "startOffset": 13611,
                     "endColumn": 100,
-                    "endOffset": 13711
+                    "endOffset": 13707
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.0\\res\\values-fr\\values-fr.xml"
@@ -1515,9 +1514,9 @@
                 "to": {
                     "startLine": 135,
                     "startColumn": 4,
-                    "startOffset": 13716,
+                    "startOffset": 13712,
                     "endColumn": 107,
-                    "endOffset": 13819
+                    "endOffset": 13815
                 },
                 "from": {
                     "file": "C:\\Users\\vscheidecker\\Pixel Art World\\Pixel Art World\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-wallet\\9.4.0\\res\\values-fr\\values.xml"

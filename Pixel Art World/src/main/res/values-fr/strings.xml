@@ -20,6 +20,6 @@
     <string name="nojpegsaved">"Le dessin n'a pas pu s'enregistrer en jpeg"</string>
     <string name="newdrawing">Nouveau dessin</string>
     <string name="confirmnewdrawing">"Commencer un nouveau dessin?"</string>
-    <string name="imageselection">"Choisissez le dessin jepg à partager"</string>
+    <string name="imageselection">"Choisissez le fichier à partager"</string>
     <string name="serviceselection">"Partager le dessin avec"</string>
 </resources>

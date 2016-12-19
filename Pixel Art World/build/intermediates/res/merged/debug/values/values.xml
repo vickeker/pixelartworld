@@ -53,7 +53,6 @@
             <item>@drawable/ic_perm_media_gif</item>
             <item>@drawable/ic_share</item>
             <item>@drawable/ic_delete</item>
-            <item>@drawable/ic_perm_media</item>
             <item>@drawable/ic_settings</item>
         </integer-array>
     <attr format="reference" name="castExpandedControllerToolbarStyle"/>
@@ -555,7 +554,7 @@
     <string name="google_app_id" translatable="false">1:826994134761:android:bce651be03d730e6</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAPK-sTx2bjDXQAC5QDZN_zYZjwfuINLe8</string>
     <string name="google_storage_bucket" translatable="false">pixel-art-world.appspot.com</string>
-    <string name="imageselection">"Select the saved jpeg to share"</string>
+    <string name="imageselection">"Select the file to share"</string>
     <string name="info">version 1.3.1 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
     <string name="jpegcheckbox">+ Create a .jpeg file of this view</string>
     <string name="messenger_send_button_text">Send</string>

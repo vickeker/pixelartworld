@@ -20,7 +20,7 @@
     <string name="nojpegsaved">"Creating a jpeg of the drawing failed"</string>
     <string name="newdrawing">New drawing</string>
     <string name="confirmnewdrawing">"Start a new drawing?"</string>
-    <string name="imageselection">"Select the saved jpeg to share"</string>
+    <string name="imageselection">"Select the file to share"</string>
     <string name="serviceselection">"Share drawing using"</string>
     <string name="facebook_app_id" translatable="false">651884804964877</string>
 </resources>

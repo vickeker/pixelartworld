@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -43,6 +44,8 @@ public class GifObject {
     public List<Drawing> DrawingList;
     private int REQUEST_WRITE_EXTERNAL_STORAGE=1;
     public Context context;
+    private int timeframe=200;
+    private boolean loop=true;
 
     public GifObject(Context mcontext){
         GifList=new ArrayList<Bitmap>();
@@ -58,6 +61,22 @@ public class GifObject {
         DrawingList.clear();
         bm= BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_add);
         GifList.add(bm);
+    }
+
+    public void setTimeFrame(int tm){
+        timeframe=tm;
+    }
+
+    public int getTimeFrame(){
+        return timeframe;
+    }
+
+    public void setLoop(boolean l){
+        loop=l;
+    }
+
+    public boolean  getLoop(){
+        return loop;
     }
 
     public void addImage(int position, Bitmap image){
@@ -90,7 +109,8 @@ public class GifObject {
         for(int i=1;i<=GifList.size()-1;i++){
             Bitmap b = Bitmap.createScaledBitmap(GifList.get(i), width, height, false);
         Drawable frame = new BitmapDrawable(context.getResources(), b);
-        animDrawable.addFrame(frame, 1000);
+        animDrawable.addFrame(frame, timeframe);
+            animDrawable.setOneShot(!loop);
         }
 
         return animDrawable;
@@ -100,9 +120,15 @@ public class GifObject {
       //  ArrayList<Bitmap> bitmaps = adapter.getBitmapArray();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         AnimatedGifEncoder encoder = new AnimatedGifEncoder();
-        encoder.start(bos);
+        if(loop) {
+            encoder.setRepeat(0);
+        } else {
+            encoder.setRepeat(1);
+        }
+            encoder.start(bos);
         for (int i=1;i<=GifList.size()-1; i++) {
             encoder.addFrame(GifList.get(i));
+            encoder.setDelay(timeframe);
         }
         encoder.finish();
         FileOutputStream outStream = null;
@@ -261,13 +287,17 @@ public class GifObject {
         ArrayList<HashMap<String, Object>> list=new ArrayList<HashMap<String, Object>>();
         String path = Environment.getExternalStorageDirectory().toString()+"/PixelWorld/gif";
         File f = new File(path);
-        File file[] = f.listFiles();
+        File file[] = f.listFiles(new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".gif");
+            }
+        });
         if (file.length>0) {
             for (int i = 0; i < file.length; i++) {
                 map = new HashMap<String, Object>();
                 map.put("path", file[i].getPath());
                 Drawable d = Drawable.createFromPath(file[i].getPath());
-                map.put("gif", d);
+                map.put("image", d);
                 list.add(map);
             }
         }
@@ -324,6 +354,27 @@ public class GifObject {
         }
     }
 
+    public void deletefile(String myfilename) {
+        context.deleteFile(myfilename);
+        try {
+            File file = context.getFilesDir();
+            File filename = new File(file, "AppGifName");
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fis);
+            ArrayList<String> list = (ArrayList<String>) in.readObject();
+            list.remove(myfilename);
+            in.close();
+            FileOutputStream fos = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(fos);
+            out.writeObject(list);
+            out.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
     private String getStringFromBitmap(Bitmap bitmapPicture) {
  /*

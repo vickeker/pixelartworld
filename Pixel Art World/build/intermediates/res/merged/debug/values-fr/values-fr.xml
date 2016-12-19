@@ -103,7 +103,7 @@
     <string name="confirmnewdrawing">"Commencer un nouveau dessin?"</string>
     <string name="delete">Supprimer le dessin Pixel</string>
     <string name="erasefile">Voulez-vous écraser le fichier existant?</string>
-    <string name="imageselection">"Choisissez le dessin jepg à partager"</string>
+    <string name="imageselection">"Choisissez le fichier à partager"</string>
     <string name="info">version 1.3.1 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
     <string name="jpegcheckbox">+ Créé un ficher .jpeg de cette vue</string>
     <string name="messenger_send_button_text">Envoyer</string>
