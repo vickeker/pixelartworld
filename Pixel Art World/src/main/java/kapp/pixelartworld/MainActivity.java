@@ -639,7 +639,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 						public void onClick(DialogInterface dialog, int which) {
 							//Exit dialog
 						}
-					}).setNegativeButton("Save", new DialogInterface.OnClickListener() {
+					}).setNegativeButton(getString(R.string.save), new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							//Save GIF Animation
@@ -680,7 +680,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 													} catch (ClassNotFoundException e) {
 														// TODO Auto-generated catch block
 														e.printStackTrace();
-														CharSequence text = "Error, couldnt save the GIF";
+														CharSequence text = getString(R.string.savegiferror);
 														int duration = Toast.LENGTH_LONG;
 														Toast toast = Toast.makeText(MainActivity.this, text, duration);
 														toast.show();
@@ -701,7 +701,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 											} catch (ClassNotFoundException e) {
 												// TODO Auto-generated catch block
 												e.printStackTrace();
-												CharSequence text = "Error, couldnt save the GIF";
+												CharSequence text =getString(R.string.savegiferror);
 												int duration = Toast.LENGTH_LONG;
 												Toast toast = Toast.makeText(MainActivity.this, text, duration);
 												toast.show();
@@ -808,19 +808,19 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 				} else {
 					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-					builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+					builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							ColorList=customgridview1.openDrawing(mygif.getDrawing(np.getValue()-1));
 						}
-					}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					}).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 						}
 					});
 
-					builder.setTitle("Edit drawing?");
-					builder.setMessage("Note: The current drawing will be lost if not already saved or added to the animation");
+					builder.setTitle(getString(R.string.editdrawing));
+					builder.setMessage(getString(R.string.noteeditdrawing));
 					builder.show();
 				}
 			}
@@ -848,13 +848,13 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 					mygif.setTimeFrame(giftimeframe);
 					}
 					}
-				}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				}).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 					}
 				});
 
-				builder.setTitle("GIF Settings");
+				builder.setTitle(getString(R.string.gifsettings));
 				builder.show();
 			}
 		});
@@ -1135,10 +1135,12 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 										waIntent.setPackage("com.whatsapp");
 
 										waIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
-										startActivity(Intent.createChooser(waIntent, "Share with"));
+										waIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.drewpaw));
+
+										startActivity(Intent.createChooser(waIntent, getString(R.string.sharewith)));
 
 									} catch (PackageManager.NameNotFoundException e) {
-										Toast.makeText(MainActivity.this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
+										Toast.makeText(MainActivity.this, getString(R.string.nowa), Toast.LENGTH_SHORT)
 												.show();
 									}
 									break;
@@ -1158,12 +1160,12 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 											} else {
 												targetedShareIntent.setType("image/jpeg");
 											}
-											targetedShareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Pixel Art World drawing");
+											targetedShareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.pawdrawing));
 
 
 											targetedShareIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
 
-											targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Draw with Pixel Art World");
+											targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.drewpaw));
 
 											targetedShareIntent.setPackage(packageName);
 											targetedShareIntents.add(targetedShareIntent);
@@ -1171,7 +1173,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 										}
 
 										if(!targetedShareIntents.isEmpty()){
-											Intent chooserIntent=Intent.createChooser(targetedShareIntents.remove(0), "Share via");
+											Intent chooserIntent=Intent.createChooser(targetedShareIntents.remove(0), getString(R.string.sharevia));
 											chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[targetedShareIntents.size()]));
 											MainActivity.this.startActivity(chooserIntent);
 										}else{
@@ -1236,8 +1238,8 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 
 	public void NewGif(){
 		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-		alert.setTitle("New GIF");
-		alert.setMessage("Start a new GIF");
+		alert.setTitle(getString(R.string.newgif));
+		alert.setMessage(getString(R.string.startnewgif));
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				mygif.GifClear();
@@ -1263,7 +1265,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 				filenamelist.add(h);
 			}
 		} else {
-			CharSequence text ="No saved GIF";
+			CharSequence text =getString(R.string.nosavedgif);
 			int duration = Toast.LENGTH_LONG;
 			Toast toast = Toast.makeText(MainActivity.this, text, duration);
 			toast.show();
@@ -1297,7 +1299,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 
 
 			lv.setAdapter(adapter);
-			alertDialog.setTitle("Open a GIF");
+			alertDialog.setTitle(getString(R.string.opengif));
 			final AlertDialog alert = alertDialog.show();
 
 			lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

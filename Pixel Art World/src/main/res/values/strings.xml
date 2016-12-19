@@ -23,4 +23,20 @@
     <string name="imageselection">"Select the file to share"</string>
     <string name="serviceselection">"Share drawing using"</string>
     <string name="facebook_app_id" translatable="false">651884804964877</string>
+    <string name="savegiferror">"Error, the GIF couldn't be saved"</string>
+    <string name="editdrawing">"Edit the Drawing?"</string>
+    <string name="noteeditdrawing">"Note: The current drawing will be lost if not already saved or added to GIF"</string>
+    <string name="gifsettings">"GIF Settings"</string>
+    <string name="drewpaw">"Drew with Pixel Art World!"</string>
+    <string name="sharewith">"Share with"</string>
+    <string name="nowa">"WhatsApp is not installed"</string>
+    <string name="pawdrawing">"Pixel Art World Drawing"</string>
+    <string name="sharevia">"Share via"</string>
+    <string name="newgif">"New GIF"</string>
+    <string name="startnewgif">"Start a new GIF"</string>
+    <string name="nosavedgif">"No saved GIF"</string>
+    <string name="opengif">"Open a GIF"</string>
+
+
+
 </resources>

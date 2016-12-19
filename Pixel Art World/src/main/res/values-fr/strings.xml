@@ -22,4 +22,20 @@
     <string name="confirmnewdrawing">"Commencer un nouveau dessin?"</string>
     <string name="imageselection">"Choisissez le fichier à partager"</string>
     <string name="serviceselection">"Partager le dessin avec"</string>
+    <string name="savegiferror">"Erreur, le GIF n'a pas pu être enregistré"</string>
+    <string name="editdrawing">"Editer le dessin?"</string>
+    <string name="noteeditdrawing">"Note: le dessin en cours sera perdu s'il n'a pas encore été enregistré ou ajouté à un GIF"</string>
+    <string name="gifsettings">"Paramètres du GIF"</string>
+    <string name="drewpaw">"Dessiné avec Pixel Art World!"</string>
+    <string name="sharewith">"Partager avec"</string>
+    <string name="nowa">"WhatsApp n'est pas installé"</string>
+    <string name="pawdrawing">"Dessin Pixel Art World"</string>
+    <string name="sharevia">"Partager via"</string>
+    <string name="newgif">"Nouveau GIF"</string>
+    <string name="startnewgif">"Commencer un nouveau GIF"</string>
+    <string name="nosavedgif">"Pas de GIF enregistré"</string>
+    <string name="opengif">"Ouvrir un GIF"</string>
+
+
+
 </resources>
