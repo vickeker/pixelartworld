@@ -275,9 +275,10 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 					case 5:
 						Delete();
 						break;
-					case 6:
+/*					case 6:
 						Settings();
-						break;}
+						break;*/
+				}
 				mDrawerList.setItemChecked(position, true);
 				mDrawerLayout.closeDrawer(mLinearDrawer);
 			}
@@ -867,7 +868,6 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 
 
 
-
 	}
 
 	public void updateNumberPicker() {
@@ -1417,10 +1417,11 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 					if (selectedFileList.size() != 0) {
 						for (int i = 0; i <= selectedFileList.size() - 1; i++) {
 						String str=selectedFileList.get(i);
-							if (str.length() > 4) {
+						String substr;
+								if (str.length() > 4) {
 									if(str.substring(str.length() - 4).equals(".gif")){
-										str.replace(".gif", "");
-										mygif.deletefile(str);
+									substr=str.replace(".gif", "");
+										mygif.deletefile(substr);
 									} else {
 										customgridview1.deletefile(str);
 									}

@@ -44,7 +44,7 @@
         <item>Open GIF</item>
         <item>Share</item>
         <item>Delete</item>
-        <item>Settings</item>
+        <!--<item>Settings</item>-->
      </string-array>
     <integer-array name="maindrawermenuimage">
             <item>@drawable/action_new</item>
@@ -53,7 +53,7 @@
             <item>@drawable/ic_perm_media_gif</item>
             <item>@drawable/ic_share</item>
             <item>@drawable/ic_delete</item>
-            <item>@drawable/ic_settings</item>
+            <!--<item>@drawable/ic_settings</item>-->
         </integer-array>
     <attr format="reference" name="castExpandedControllerToolbarStyle"/>
     <attr format="reference" name="drawerArrowStyle"/>
@@ -546,16 +546,19 @@
     <string name="decline">Decline</string>
     <string name="default_web_client_id" translatable="false">826994134761-oksdlr7fjchtg0h1k163ifnm1obsgbtu.apps.googleusercontent.com</string>
     <string name="delete">Delete Pixel drawings</string>
+    <string name="drewpaw">"Drew with Pixel Art World!"</string>
+    <string name="editdrawing">"Edit the Drawing?"</string>
     <string name="erasefile">Do you want to erase the existing file</string>
     <string name="facebook_app_id" translatable="false">651884804964877</string>
     <string name="firebase_database_url" translatable="false">https://pixel-art-world.firebaseio.com</string>
     <string name="gcm_defaultSenderId" translatable="false">826994134761</string>
+    <string name="gifsettings">"GIF Settings"</string>
     <string name="google_api_key" translatable="false">AIzaSyAPK-sTx2bjDXQAC5QDZN_zYZjwfuINLe8</string>
     <string name="google_app_id" translatable="false">1:826994134761:android:bce651be03d730e6</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAPK-sTx2bjDXQAC5QDZN_zYZjwfuINLe8</string>
     <string name="google_storage_bucket" translatable="false">pixel-art-world.appspot.com</string>
     <string name="imageselection">"Select the file to share"</string>
-    <string name="info">version 1.3.1 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
+    <string name="info">version 1.4.0 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
     <string name="jpegcheckbox">+ Create a .jpeg file of this view</string>
     <string name="messenger_send_button_text">Send</string>
     <string name="mr_media_route_button_content_description">Cast</string>
@@ -572,17 +575,27 @@
     <string name="name">Name</string>
     <string name="nameexist">This name already exists</string>
     <string name="newdrawing">New drawing</string>
+    <string name="newgif">"New GIF"</string>
     <string name="noactionsaved">"No previous action saved"</string>
     <string name="nojpegsaved">"Creating a jpeg of the drawing failed"</string>
     <string name="nosaveddrawing">No saved Pixel drawings</string>
+    <string name="nosavedgif">"No saved GIF"</string>
+    <string name="noteeditdrawing">"Note: The current drawing will be lost if not already saved or added to GIF"</string>
+    <string name="nowa">"WhatsApp is not installed"</string>
     <string name="open">Open a Pixel drawing</string>
+    <string name="opengif">"Open a GIF"</string>
+    <string name="pawdrawing">"Pixel Art World Drawing"</string>
     <string name="place_autocomplete_clear_button">Clear search</string>
     <string name="place_autocomplete_search_hint">Search</string>
     <string name="save">Save</string>
+    <string name="savegiferror">"Error, the GIF couldn't be saved"</string>
     <string name="serviceselection">"Share drawing using"</string>
     <string name="settings">Coming soon!</string>
     <string name="settings_title">Settings</string>
     <string name="share_title">Share</string>
+    <string name="sharevia">"Share via"</string>
+    <string name="sharewith">"Share with"</string>
+    <string name="startnewgif">"Start a new GIF"</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>

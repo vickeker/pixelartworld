@@ -29,7 +29,7 @@
         <item>Open GIF</item>
         <item>Share</item>
         <item>Delete</item>
-        <item>Settings</item>
+        <!--<item>Settings</item>-->
      </string-array>
 
 
@@ -40,7 +40,7 @@
             <item>@drawable/ic_perm_media_gif</item>
             <item>@drawable/ic_share</item>
             <item>@drawable/ic_delete</item>
-            <item>@drawable/ic_settings</item>
+            <!--<item>@drawable/ic_settings</item>-->
         </integer-array>
 
 

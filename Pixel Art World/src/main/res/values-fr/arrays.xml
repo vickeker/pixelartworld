@@ -8,6 +8,6 @@
         <item>Ouvrir GIF</item>
         <item>Partagé</item>
         <item>Supprimé</item>
-        <item>Préférences</item>
+        <!--<item>Préférences</item>-->
         </string-array>
 </resources>

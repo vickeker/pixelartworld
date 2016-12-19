@@ -25,7 +25,12 @@ public final class R {
         public static final int cast_expanded_controller_default_control_buttons=0x7f070002;
         public static final int cast_mini_controller_default_control_buttons=0x7f070003;
         public static final int colors=0x7f070004;
+        /** <item>Préférences</item>
+<item>Settings</item>
+         */
         public static final int maindrawermenu=0x7f070000;
+        /** <item>@drawable/ic_settings</item>
+         */
         public static final int maindrawermenuimage=0x7f070005;
     }
     public static final class attr {
@@ -3588,7 +3593,7 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f06000e;
         public static final int abc_shareactionprovider_share_with_application=0x7f06000f;
         public static final int abc_toolbar_collapse_description=0x7f060010;
-        public static final int accept=0x7f06007d;
+        public static final int accept=0x7f06008a;
         public static final int app_name=0x7f060068;
         public static final int cancel=0x7f060069;
         public static final int cantfind=0x7f06006a;
@@ -3602,8 +3607,8 @@ containing a value of this type.
         public static final int cast_forward_10=0x7f060018;
         public static final int cast_forward_30=0x7f060019;
         public static final int cast_intro_overlay_button_text=0x7f06001a;
-        public static final int cast_invalid_stream_duration_text=0x7f06007e;
-        public static final int cast_invalid_stream_position_text=0x7f06007f;
+        public static final int cast_invalid_stream_duration_text=0x7f06008b;
+        public static final int cast_invalid_stream_position_text=0x7f06008c;
         public static final int cast_mute=0x7f06001b;
         public static final int cast_notification_connected_message=0x7f06001c;
         public static final int cast_notification_connecting_message=0x7f06001d;
@@ -3666,22 +3671,25 @@ containing a value of this type.
         public static final int common_signin_button_text=0x7f060056;
         public static final int common_signin_button_text_long=0x7f060057;
         public static final int confirmnewdrawing=0x7f06006b;
-        public static final int create_calendar_message=0x7f060080;
-        public static final int create_calendar_title=0x7f060081;
-        public static final int decline=0x7f060082;
-        public static final int default_web_client_id=0x7f060083;
+        public static final int create_calendar_message=0x7f06008d;
+        public static final int create_calendar_title=0x7f06008e;
+        public static final int decline=0x7f06008f;
+        public static final int default_web_client_id=0x7f060090;
         public static final int delete=0x7f06006c;
-        public static final int erasefile=0x7f06006d;
-        public static final int facebook_app_id=0x7f060084;
-        public static final int firebase_database_url=0x7f060085;
-        public static final int gcm_defaultSenderId=0x7f060086;
-        public static final int google_api_key=0x7f060087;
-        public static final int google_app_id=0x7f060088;
-        public static final int google_crash_reporting_api_key=0x7f060089;
-        public static final int google_storage_bucket=0x7f06008a;
-        public static final int imageselection=0x7f06006e;
-        public static final int info=0x7f06006f;
-        public static final int jpegcheckbox=0x7f060070;
+        public static final int drewpaw=0x7f06006d;
+        public static final int editdrawing=0x7f06006e;
+        public static final int erasefile=0x7f06006f;
+        public static final int facebook_app_id=0x7f060091;
+        public static final int firebase_database_url=0x7f060092;
+        public static final int gcm_defaultSenderId=0x7f060093;
+        public static final int gifsettings=0x7f060070;
+        public static final int google_api_key=0x7f060094;
+        public static final int google_app_id=0x7f060095;
+        public static final int google_crash_reporting_api_key=0x7f060096;
+        public static final int google_storage_bucket=0x7f060097;
+        public static final int imageselection=0x7f060071;
+        public static final int info=0x7f060072;
+        public static final int jpegcheckbox=0x7f060073;
         public static final int messenger_send_button_text=0x7f060058;
         public static final int mr_media_route_button_content_description=0x7f060059;
         public static final int mr_media_route_chooser_searching=0x7f06005a;
@@ -3694,26 +3702,36 @@ containing a value of this type.
         public static final int mr_media_route_controller_stop=0x7f060061;
         public static final int mr_system_route_name=0x7f060062;
         public static final int mr_user_route_category_name=0x7f060063;
-        public static final int name=0x7f060071;
-        public static final int nameexist=0x7f060072;
-        public static final int newdrawing=0x7f060073;
-        public static final int noactionsaved=0x7f060074;
-        public static final int nojpegsaved=0x7f060075;
-        public static final int nosaveddrawing=0x7f060076;
-        public static final int open=0x7f060077;
+        public static final int name=0x7f060074;
+        public static final int nameexist=0x7f060075;
+        public static final int newdrawing=0x7f060076;
+        public static final int newgif=0x7f060077;
+        public static final int noactionsaved=0x7f060078;
+        public static final int nojpegsaved=0x7f060079;
+        public static final int nosaveddrawing=0x7f06007a;
+        public static final int nosavedgif=0x7f06007b;
+        public static final int noteeditdrawing=0x7f06007c;
+        public static final int nowa=0x7f06007d;
+        public static final int open=0x7f06007e;
+        public static final int opengif=0x7f06007f;
+        public static final int pawdrawing=0x7f060080;
         public static final int place_autocomplete_clear_button=0x7f060064;
         public static final int place_autocomplete_search_hint=0x7f060065;
-        public static final int save=0x7f060078;
-        public static final int serviceselection=0x7f060079;
-        public static final int settings=0x7f06007a;
-        public static final int settings_title=0x7f06007b;
-        public static final int share_title=0x7f06007c;
+        public static final int save=0x7f060081;
+        public static final int savegiferror=0x7f060082;
+        public static final int serviceselection=0x7f060083;
+        public static final int settings=0x7f060084;
+        public static final int settings_title=0x7f060085;
+        public static final int share_title=0x7f060086;
+        public static final int sharevia=0x7f060087;
+        public static final int sharewith=0x7f060088;
+        public static final int startnewgif=0x7f060089;
         public static final int status_bar_notification_info_overflow=0x7f060066;
-        public static final int store_picture_message=0x7f06008b;
-        public static final int store_picture_title=0x7f06008c;
-        public static final int tagmanager_preview_dialog_button=0x7f06008d;
-        public static final int tagmanager_preview_dialog_message=0x7f06008e;
-        public static final int tagmanager_preview_dialog_title=0x7f06008f;
+        public static final int store_picture_message=0x7f060098;
+        public static final int store_picture_title=0x7f060099;
+        public static final int tagmanager_preview_dialog_button=0x7f06009a;
+        public static final int tagmanager_preview_dialog_message=0x7f06009b;
+        public static final int tagmanager_preview_dialog_title=0x7f06009c;
         public static final int wallet_buy_button_place_holder=0x7f060067;
     }
     public static final class style {
