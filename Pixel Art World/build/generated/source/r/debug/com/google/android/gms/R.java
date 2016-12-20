@@ -541,21 +541,21 @@ public final class R {
 		public static final int wallet_buy_button_place_holder = 0x7f060067;
 	}
 	public static final class style {
-		public static final int CastExpandedController = 0x7f0900b3;
-		public static final int CastIntroOverlay = 0x7f0900b4;
-		public static final int CastMiniController = 0x7f0900b5;
-		public static final int CustomCastTheme = 0x7f0900b6;
-		public static final int TextAppearance_CastIntroOverlay_Button = 0x7f0900f3;
-		public static final int TextAppearance_CastIntroOverlay_Title = 0x7f0900f4;
-		public static final int TextAppearance_CastMiniController_Subtitle = 0x7f0900f5;
-		public static final int TextAppearance_CastMiniController_Title = 0x7f0900f6;
-		public static final int Theme_AppInvite_Preview = 0x7f090108;
-		public static final int Theme_AppInvite_Preview_Base = 0x7f090016;
-		public static final int Theme_IAPTheme = 0x7f09010a;
-		public static final int WalletFragmentDefaultButtonTextAppearance = 0x7f090112;
-		public static final int WalletFragmentDefaultDetailsHeaderTextAppearance = 0x7f090113;
-		public static final int WalletFragmentDefaultDetailsTextAppearance = 0x7f090114;
-		public static final int WalletFragmentDefaultStyle = 0x7f090115;
+		public static final int CastExpandedController = 0x7f0900b4;
+		public static final int CastIntroOverlay = 0x7f0900b5;
+		public static final int CastMiniController = 0x7f0900b6;
+		public static final int CustomCastTheme = 0x7f0900b7;
+		public static final int TextAppearance_CastIntroOverlay_Button = 0x7f0900f4;
+		public static final int TextAppearance_CastIntroOverlay_Title = 0x7f0900f5;
+		public static final int TextAppearance_CastMiniController_Subtitle = 0x7f0900f6;
+		public static final int TextAppearance_CastMiniController_Title = 0x7f0900f7;
+		public static final int Theme_AppInvite_Preview = 0x7f090109;
+		public static final int Theme_AppInvite_Preview_Base = 0x7f090017;
+		public static final int Theme_IAPTheme = 0x7f09010b;
+		public static final int WalletFragmentDefaultButtonTextAppearance = 0x7f090113;
+		public static final int WalletFragmentDefaultDetailsHeaderTextAppearance = 0x7f090114;
+		public static final int WalletFragmentDefaultDetailsTextAppearance = 0x7f090115;
+		public static final int WalletFragmentDefaultStyle = 0x7f090116;
 	}
 	public static final class styleable {
 		public static final int[] AdsAttrs = { 0x7f010028, 0x7f010029, 0x7f01002a };

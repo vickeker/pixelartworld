@@ -44,7 +44,7 @@
         <item>Open GIF</item>
         <item>Share</item>
         <item>Delete</item>
-        <!--<item>Settings</item>-->
+        
      </string-array>
     <integer-array name="maindrawermenuimage">
             <item>@drawable/action_new</item>
@@ -53,7 +53,7 @@
             <item>@drawable/ic_perm_media_gif</item>
             <item>@drawable/ic_share</item>
             <item>@drawable/ic_delete</item>
-            <!--<item>@drawable/ic_settings</item>-->
+            
         </integer-array>
     <attr format="reference" name="castExpandedControllerToolbarStyle"/>
     <attr format="reference" name="drawerArrowStyle"/>
@@ -558,7 +558,7 @@
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAPK-sTx2bjDXQAC5QDZN_zYZjwfuINLe8</string>
     <string name="google_storage_bucket" translatable="false">pixel-art-world.appspot.com</string>
     <string name="imageselection">"Select the file to share"</string>
-    <string name="info">version 1.4.0 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
+    <string name="info">version 1.4.1 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
     <string name="jpegcheckbox">+ Create a .jpeg file of this view</string>
     <string name="messenger_send_button_text">Send</string>
     <string name="mr_media_route_button_content_description">Cast</string>
@@ -1766,6 +1766,9 @@
     </style>
     <style name="RtlOverlay.Widget.AppCompat.SearchView.MagIcon" parent="android:Widget">
         <item name="android:layout_marginLeft">@dimen/abc_dropdownitem_text_padding_left</item>
+    </style>
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>

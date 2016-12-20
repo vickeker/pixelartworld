@@ -85,6 +85,7 @@ public class GifObject {
 
     public void deleteImage(int position){
         GifList.remove(position);
+        DrawingList.remove(position-1);
     }
 
     public Bitmap getImage(int position){

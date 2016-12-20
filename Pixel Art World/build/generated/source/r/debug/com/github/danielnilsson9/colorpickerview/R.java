@@ -34,7 +34,7 @@ public final class R {
 	}
 	public static final class style {
 		public static final int colorpickerview__ColorPickerViewStyle = 0x7f090003;
-		public static final int colorpickerview__PickerDialogButtonStyle = 0x7f090077;
+		public static final int colorpickerview__PickerDialogButtonStyle = 0x7f090078;
 	}
 	public static final class styleable {
 		public static final int[] colorpickerview__ColorPickerView = { 0x7f010147, 0x7f010148, 0x7f010149, 0x7f01014a };
