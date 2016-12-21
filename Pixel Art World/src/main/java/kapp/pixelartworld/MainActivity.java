@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Instrumentation;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -20,6 +21,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -133,6 +135,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 	private Button gifsetting;
 	private int giftimeframe=200;
 	private boolean	gifloop=true;
+	private ProgressDialog progressDialog;
 
 
 	//For touch event test purpose
@@ -675,17 +678,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 											alert2.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												public void onClick(DialogInterface dialog, int whichButton) {
 													//save gif drawing
-													try {
-														mygif.savedrawinglist(filename);
-														mygif.generateGIF(filename);
-													} catch (ClassNotFoundException e) {
-														// TODO Auto-generated catch block
-														e.printStackTrace();
-														CharSequence text = getString(R.string.savegiferror);
-														int duration = Toast.LENGTH_LONG;
-														Toast toast = Toast.makeText(MainActivity.this, text, duration);
-														toast.show();
-													}
+													new LoadViewTask().execute();
 												}
 											});
 											alert2.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -697,8 +690,7 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 											//save gif drawing
 											try {
 												mygif.saveGifName(filename);
-												mygif.savedrawinglist(filename);
-												mygif.generateGIF(filename);
+												new LoadViewTask().execute();
 											} catch (ClassNotFoundException e) {
 												// TODO Auto-generated catch block
 												e.printStackTrace();
@@ -1777,4 +1769,61 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 	}
 
 
+	//To use the AsyncTask, it must be subclassed
+	private class LoadViewTask extends AsyncTask<Void, Integer, Void>
+	{
+		//Before running code in separate thread
+		@Override
+		protected void onPreExecute()
+		{
+			//Create a new progress dialog
+			progressDialog = ProgressDialog.show(MainActivity.this,"Loading...",
+					"Generating the GIF, please wait...", false, false);
+		}
+
+		//The code to be executed in a background thread.
+		@Override
+		protected Void doInBackground(Void... params)
+		{
+            /* This is just a code that delays the thread execution 4 times,
+             * during 850 milliseconds and updates the current progress. This
+             * is where the code that is going to be executed on a background
+             * thread must be placed.
+             */
+
+					try {
+						mygif.savedrawinglist(filename);
+						mygif.generateGIF(filename);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						CharSequence text = getString(R.string.savegiferror);
+						int duration = Toast.LENGTH_LONG;
+						Toast toast = Toast.makeText(MainActivity.this, text, duration);
+						toast.show();
+					}
+
+
+
+			return null;
+		}
+
+		//Update the progress
+		@Override
+		protected void onProgressUpdate(Integer... values)
+		{
+			//set the current progress of the progress dialog
+			progressDialog.setProgress(values[0]);
+		}
+
+		//after executing the code in the thread
+		@Override
+		protected void onPostExecute(Void result)
+		{
+			//close the progress dialog
+			progressDialog.dismiss();
+			//initialize the View
+		//	setContentView(R.layout.main);
+		}
+	}
 }
