@@ -32,7 +32,6 @@ import java.io.ObjectOutputStream;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -209,11 +208,13 @@ public class GifObject {
     }
 
     public String getJsonString(){
-        JSONObject JDrawingList=new JSONObject();
+        JSONArray JDrawingList=new JSONArray();
         String data;
+
         try{
+            JSONObject JDrawing;
             for(int i=0;i<=DrawingList.size()-1;i++){
-                JSONObject JDrawing=new JSONObject();
+                JDrawing=new JSONObject();
                 JDrawing.put("colnum",DrawingList.get(i).getColnum());
                 JDrawing.put("startpos",DrawingList.get(i).getStartposition());
                 JSONArray jsonArr = new JSONArray();
@@ -224,7 +225,7 @@ public class GifObject {
                 String encodedImage = getStringFromBitmap(GifList.get(i+1));
                 JDrawing.put("bitmap", encodedImage);
 
-                JDrawingList.put("Drawing"+String.valueOf(i),JDrawing);
+                JDrawingList.put(JDrawing);
 
             }
             data=JDrawingList.toString();
@@ -307,12 +308,13 @@ public class GifObject {
 
     public void setGiffromJsonString(String str){
         try {
-            JSONObject JDrawingList = new JSONObject(str);
-            Iterator<String> keys = JDrawingList.keys();
+            JSONArray JDrawingList = new JSONArray(str);
+    //        Iterator<String> keys = JDrawingList.keys();
             GifClear();
-            while( keys.hasNext() ) {
-                String key = keys.next();
-                JSONObject JDrawing = JDrawingList.getJSONObject(key);
+       //     while( keys.hasNext() ) {
+       //         String key = keys.next();
+            for(int j=0;j<=JDrawingList.length()-1;j++){
+                JSONObject JDrawing = JDrawingList.getJSONObject(j);
                 int col = JDrawing.getInt("colnum");
                 int startpos = JDrawing.getInt("startpos");
 

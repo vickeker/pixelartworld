@@ -107,7 +107,7 @@
     <string name="erasefile">Voulez-vous écraser le fichier existant?</string>
     <string name="gifsettings">"Paramètres du GIF"</string>
     <string name="imageselection">"Choisissez le fichier à partager"</string>
-    <string name="info">version 1.4.1 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
+    <string name="info">version 1.4.3 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
     <string name="jpegcheckbox">+ Créé un ficher .jpeg de cette vue</string>
     <string name="messenger_send_button_text">Envoyer</string>
     <string msgid="8327680881775995150" name="mr_media_route_button_content_description">"Caster"</string>

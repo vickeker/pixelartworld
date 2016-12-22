@@ -9,8 +9,8 @@ android {
         applicationId "kapp.pixelartworld"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 11
-        versionName "1.4.2"
+        versionCode 12
+        versionName "1.4.3"
         multiDexEnabled true
     }
 
@@ -22,7 +22,7 @@ android {
         debug {
             minifyEnabled false
             //    applicationIdSuffix ".debug"
-
+                debuggable true
 
         }
         /*    jnidebug {

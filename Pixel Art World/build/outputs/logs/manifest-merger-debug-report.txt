@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:2:1-62:12
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:2:1-63:12
 	package
 		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:4:5-33
 		INJECTED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml
@@ -127,7 +127,7 @@ MERGED from [com.android.support:support-compat:24.2.0] C:\Users\vscheidecker\Pi
 		INJECTED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml
 application
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:18:5-60:19
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:18:5-61:19
 MERGED from [com.facebook.android:facebook-android-sdk:4.14.1] C:\Users\vscheidecker\Pixel Art World\Pixel Art World\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.14.1\AndroidManifest.xml:28:5-37:19
 MERGED from [com.android.support:customtabs:23.4.0] C:\Users\vscheidecker\Pixel Art World\Pixel Art World\build\intermediates\exploded-aar\com.android.support\customtabs\23.4.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:cardview-v7:23.4.0] C:\Users\vscheidecker\Pixel Art World\Pixel Art World\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.4.0\AndroidManifest.xml:22:5-20
@@ -194,68 +194,68 @@ MERGED from [com.android.support:support-compat:24.2.0] C:\Users\vscheidecker\Pi
 	android:name
 		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:23:9-68
 meta-data#com.google.android.gms.version
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:25:9-26:69
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:26:9-27:69
 MERGED from [com.google.android.gms:play-services-basement:9.4.0] C:\Users\vscheidecker\Pixel Art World\Pixel Art World\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.4.0\AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:26:13-66
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:27:13-66
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:25:20-65
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:26:20-65
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:27:9-107
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:28:9-107
 	android:value
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:27:66-105
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:28:66-105
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:27:20-65
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:28:20-65
 activity#kapp.pixelartworld.MainActivity
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:28:9-37:20
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:29:9-38:20
 	android:label
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:30:13-45
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:31:13-45
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:29:13-59
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:30:13-59
 activity#kapp.pixelartworld.SplashActivity
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:39:9-47:20
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:40:9-48:20
 	android:theme
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:41:13-47
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:42:13-47
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:40:13-43
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:41:13-43
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:43:13-46:29
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:44:13-47:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:44:17-69
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:45:17-69
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:44:25-66
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:45:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:45:17-77
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:46:17-77
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:45:27-74
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:46:27-74
 activity#com.google.android.gms.ads.AdActivity
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:49:9-51:64
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:50:9-52:64
 MERGED from [com.google.android.gms:play-services-ads-lite:9.4.0] C:\Users\vscheidecker\Pixel Art World\Pixel Art World\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\9.4.0\AndroidManifest.xml:26:9-29:64
 	android:configChanges
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:50:13-122
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:51:13-122
 	android:theme
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:51:13-61
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:52:13-61
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:49:19-71
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:50:19-71
 activity#com.facebook.FacebookActivity
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:52:9-56:48
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:53:9-57:48
 MERGED from [com.facebook.android:facebook-android-sdk:4.14.1] C:\Users\vscheidecker\Pixel Art World\Pixel Art World\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.14.1\AndroidManifest.xml:29:9-32:75
 	android:label
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:56:13-45
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:57:13-45
 	android:configChanges
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:53:13-114
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:54:13-114
 	android:theme
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:55:13-72
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:56:13-72
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:52:19-63
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:53:19-63
 provider#com.facebook.FacebookContentProvider
-ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:57:9-59:39
+ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:58:9-60:39
 	android:authorities
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:57:19-96
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:58:19-96
 	android:exported
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:59:13-36
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:60:13-36
 	android:name
-		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:58:13-64
+		ADDED from C:\Users\vscheidecker\Pixel Art World\Pixel Art World\src\main\AndroidManifest.xml:59:13-64
 activity#com.facebook.CustomTabActivity
 ADDED from [com.facebook.android:facebook-android-sdk:4.14.1] C:\Users\vscheidecker\Pixel Art World\Pixel Art World\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.14.1\AndroidManifest.xml:33:9-36:20
 	android:exported

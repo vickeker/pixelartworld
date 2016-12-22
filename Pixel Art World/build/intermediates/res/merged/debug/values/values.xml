@@ -558,7 +558,7 @@
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAPK-sTx2bjDXQAC5QDZN_zYZjwfuINLe8</string>
     <string name="google_storage_bucket" translatable="false">pixel-art-world.appspot.com</string>
     <string name="imageselection">"Select the file to share"</string>
-    <string name="info">version 1.4.1 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
+    <string name="info">version 1.4.3 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
     <string name="jpegcheckbox">+ Create a .jpeg file of this view</string>
     <string name="messenger_send_button_text">Send</string>
     <string name="mr_media_route_button_content_description">Cast</string>
