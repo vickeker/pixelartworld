@@ -36,6 +36,7 @@
     <string name="startnewgif">"Start a new GIF"</string>
     <string name="nosavedgif">"No saved GIF"</string>
     <string name="opengif">"Open a GIF"</string>
+    <string name="numberformaterror">"Input must be an integer"</string>
 
 
 

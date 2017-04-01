@@ -351,12 +351,15 @@ private Bitmap bitmap;
 						SavedAction.put("PrevColor", drawable.getColor());
 						SavedActionList.add(SavedAction);
 						vue.setBackgroundColor(mSelectedColor);
-						if (mColorList.size() <= position) {
+/*	Created IndexOutofRange exception and situation shouldn't happen
+					if (mColorList.size() <= position) {
 							for (int i = mColorList.size(); i < position; i++) {
 								mColorList.set(i, mBackgroundColor);
 							}
+						}*/
+						if(mColorList.size() > position) {
+							mColorList.set(position, mSelectedColor);
 						}
-						mColorList.set(position, mSelectedColor);
 						invalidate();
 						requestLayout();
 					}
@@ -730,7 +733,7 @@ private Bitmap bitmap;
 				return name.toLowerCase().endsWith(".jpg");
 			}
 		});
-		if (file.length>0) {
+		if (file!=null) {
 			for (int i = 0; i < file.length; i++) {
 				map = new HashMap<String, Object>();
 				map.put("path", file[i].getPath());
@@ -810,18 +813,18 @@ private Bitmap bitmap;
 
 	public ArrayList<Integer> zoomout(ArrayList<Integer> oldlist) {
 		ArrayList<Integer> newList = new ArrayList<Integer>();
-
-		if (oldlist.size() < mGlobalColorList.size() - 1) {
-			setGlobalList(oldlist);
-
-			
-			if((mStartingPosition%mMaxColumnCount)==1||(mStartingPosition+mColumnCount-1)%mMaxColumnCount==0||mStartingPosition<=mMaxColumnCount||mStartingPosition>(mMaxColumnCount*mMaxColumnCount)-(mColumnCount*mMaxColumnCount)){
-				oldlist=addcol(mGlobalColorList, mMaxColumnCount,2);
-				int a=mColumnCount;
-				mColumnCount=mMaxColumnCount+2;
+		if(mGlobalColorList!=null) {
+			if (oldlist.size() < mGlobalColorList.size() - 1) {
 				setGlobalList(oldlist);
-				mColumnCount=a;
-				mStartingPosition=(((int)Math.floor(mStartingPosition/(mMaxColumnCount-2)))*(mMaxColumnCount))+(mStartingPosition%(mMaxColumnCount-2));
+
+
+				if ((mStartingPosition % mMaxColumnCount) == 1 || (mStartingPosition + mColumnCount - 1) % mMaxColumnCount == 0 || mStartingPosition <= mMaxColumnCount || mStartingPosition > (mMaxColumnCount * mMaxColumnCount) - (mColumnCount * mMaxColumnCount)) {
+					oldlist = addcol(mGlobalColorList, mMaxColumnCount, 2);
+					int a = mColumnCount;
+					mColumnCount = mMaxColumnCount + 2;
+					setGlobalList(oldlist);
+					mColumnCount = a;
+					mStartingPosition = (((int) Math.floor(mStartingPosition / (mMaxColumnCount - 2))) * (mMaxColumnCount)) + (mStartingPosition % (mMaxColumnCount - 2));
 				}
 			/*
 			if((mStartingPosition%(mMaxColumnCount-2))==1){
@@ -837,32 +840,34 @@ private Bitmap bitmap;
 			} else if(mStartingPosition>=mMaxChildren-(mMaxColumnCount-2)){
 			//aligné bas
 				mStartingPosition=((int)(mStartingPosition/(mColumnCount))+1)*mMaxColumnCount+(mStartingPosition%(mMaxColumnCount-2))+1;
-			} */ else {
-			mStartingPosition = mStartingPosition - (mMaxColumnCount) - 1;
-			}
-			mColumnCount=mColumnCount+2;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+			} */
+				else {
+					mStartingPosition = mStartingPosition - (mMaxColumnCount) - 1;
+				}
+				mColumnCount = mColumnCount + 2;
+				for (int j = 0; j <= mColumnCount - 1; j++) {
+					for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+							+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						newList.add(mGlobalColorList.get(i));
+					}
+				}
+			} else {
+				oldlist = addcol(oldlist, mColumnCount, 2);
+				mColumnCount = mColumnCount + 2;
+				setGlobalList(oldlist);
+				for (int i = 1; i <= mGlobalColorList.size() - 1; i++) {
 					newList.add(mGlobalColorList.get(i));
 				}
 			}
-		} else {
-			oldlist = addcol(oldlist, mColumnCount, 2
-			);
-			mColumnCount=mColumnCount+2;
-			setGlobalList(oldlist);
-			for (int i = 1; i <= mGlobalColorList.size()-1; i++) {
-				newList.add(mGlobalColorList.get(i));
-			}
+			mMaxChildren = mColumnCount * mColumnCount;
+			mColorList.clear();
+			mColorList = newList;
+			updatechild(newList);
+			invalidate();
+			requestLayout();
+			return newList;
 		}
-		mMaxChildren = mColumnCount * mColumnCount;
-		mColorList.clear();
-		mColorList = newList;
-		updatechild(newList);
-		invalidate();
-		requestLayout();
-		return newList;
+	return oldlist;
 	}
 
 	public ArrayList<Integer> zoomin(ArrayList<Integer> oldlist) {

@@ -294,7 +294,7 @@ public class GifObject {
                 return name.toLowerCase().endsWith(".gif");
             }
         });
-        if (file.length>0) {
+        if (file!=null) {
             for (int i = 0; i < file.length; i++) {
                 map = new HashMap<String, Object>();
                 map.put("path", file[i].getPath());

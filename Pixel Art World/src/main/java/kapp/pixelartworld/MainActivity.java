@@ -836,10 +836,21 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 					public void onClick(DialogInterface dialog, int which) {
 					gifloop=cb_loop.isChecked();
 						mygif.setLoop(gifloop);
-					if(Integer.parseInt(et_timeframe.getText().toString())!=0) {
-						giftimeframe = Integer.parseInt(et_timeframe.getText().toString());
-					mygif.setTimeFrame(giftimeframe);
-					}
+
+try
+{
+	int timeframe=Integer.parseInt(et_timeframe.getText().toString());
+	if(timeframe!=0){
+		giftimeframe = timeframe;
+		mygif.setTimeFrame(giftimeframe);
+	}
+} catch (NumberFormatException e){
+	CharSequence text = getString(R.string.numberformaterror);
+	int duration = Toast.LENGTH_LONG;
+	Toast toast = Toast.makeText(MainActivity.this, text, duration);
+	toast.show();
+}
+
 					}
 				}).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
 					@Override
@@ -1201,6 +1212,11 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 				}
 			});
 
+		} else {
+			CharSequence text = getString(R.string.nosaveddrawing);
+			int duration = Toast.LENGTH_LONG;
+			Toast toast = Toast.makeText(MainActivity.this, text, duration);
+			toast.show();
 		}
 	}
 

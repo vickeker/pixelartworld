@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Pixel Art World.iml" filepath="$PROJECT_DIR$/Pixel Art World.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Pixel Art World/Pixel Art World-Pixel Art World.iml" filepath="$PROJECT_DIR$/Pixel Art World/Pixel Art World-Pixel Art World.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Pixel Art World/Pixel Art World.iml" filepath="$PROJECT_DIR$/Pixel Art World/Pixel Art World.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pixelartworld.iml" filepath="$PROJECT_DIR$/pixelartworld.iml" />
     </modules>
   </component>
 </project>

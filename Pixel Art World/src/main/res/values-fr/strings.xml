@@ -35,6 +35,8 @@
     <string name="startnewgif">"Commencer un nouveau GIF"</string>
     <string name="nosavedgif">"Pas de GIF enregistré"</string>
     <string name="opengif">"Ouvrir un GIF"</string>
+    <string name="numberformaterror">"Veuillez entrer un nombre entier"</string>
+
 
 
 
