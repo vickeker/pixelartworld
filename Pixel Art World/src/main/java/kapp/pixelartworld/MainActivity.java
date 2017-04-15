@@ -744,15 +744,18 @@ public class MainActivity extends Activity implements ColorPickerDialogListener,
 		buttonadd = (Button) findViewById(R.id.add);
 		buttonadd.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View vue) {
-				Bitmap bitmapimage=customgridview1.getCacheDrawing();
-				mygif.addImage(np.getValue()+1,bitmapimage);
-				drawing = new Drawing(customgridview1.getNumCol(),ColorList);
- 				drawing.setStartposition(customgridview1.getStartingPosition());
-				mygif.addDrawing(np.getValue(),drawing);
-				updateNumberPicker();
-				np.setValue(np.getValue()+1);
-				Drawable drawableimage=new BitmapDrawable(getResources(),bitmapimage);
-				ivimage.setImageDrawable(drawableimage);
+				int colnum=customgridview1.getNumCol();
+				if(ColorList!=null && colnum>0 ) {
+					Bitmap bitmapimage = customgridview1.getCacheDrawing();
+					mygif.addImage(np.getValue() + 1, bitmapimage);
+					drawing = new Drawing(colnum, ColorList);
+					drawing.setStartposition(customgridview1.getStartingPosition());
+					mygif.addDrawing(np.getValue(), drawing);
+					updateNumberPicker();
+					np.setValue(np.getValue() + 1);
+					Drawable drawableimage = new BitmapDrawable(getResources(), bitmapimage);
+					ivimage.setImageDrawable(drawableimage);
+				}
 			}
 		});
 
@@ -1347,26 +1350,27 @@ try
 		final ArrayList<HashMap<String, Object>> filenamelist = new ArrayList<HashMap<String, Object>>();
 		ArrayList<String> list = new ArrayList<String>();
 		list = customgridview1.readDrawingName();
-		ArrayList<String> listgif=new ArrayList<String>();
-		listgif=mygif.readGifName();
-		for(int i =0;i<=mygif.readGifName().size()-1;i++){
 
-			list.add(listgif.get(i)+".gif");
-		}
 		if (list != null) {
 			for (int i = 0; i <= list.size() - 1; i++) {
 				HashMap<String, Object> h = new HashMap<String, Object>();
 				h.put("name", list.get(i));
 				filenamelist.add(h);
 			}
-		} else {
-			CharSequence text = getString(R.string.nosaveddrawing);
-			int duration = Toast.LENGTH_LONG;
-			Toast toast = Toast.makeText(MainActivity.this, text, duration);
-			toast.show();
 		}
 
-		if (filenamelist.size() != 0) {
+		ArrayList<String> listgif=new ArrayList<String>();
+		listgif=mygif.readGifName();
+		if(listgif!=null) {
+			for (int i = 0; i <= listgif.size() - 1; i++) {
+				HashMap<String, Object> h = new HashMap<String, Object>();
+				h.put("name", listgif.get(i)+".gif");
+				filenamelist.add(h);
+			}
+
+		}
+
+		if (filenamelist.size()!=0) {
 			final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
 			LayoutInflater inflater = getLayoutInflater();
 			View view = (View) inflater.inflate(R.layout.filenamelist, null);
@@ -1422,7 +1426,7 @@ try
 
 			alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int whichButton) {
-					if (selectedFileList.size() != 0) {
+					if (selectedFileList.size()!= 0) {
 						for (int i = 0; i <= selectedFileList.size() - 1; i++) {
 						String str=selectedFileList.get(i);
 						String substr;
@@ -1446,7 +1450,13 @@ try
 				}
 			});
 			alertDialog.show();
+		} else {
+			CharSequence text = getString(R.string.nosaveddrawing);
+			int duration = Toast.LENGTH_LONG;
+			Toast toast = Toast.makeText(MainActivity.this, text, duration);
+			toast.show();
 		}
+
 	}
 
 
@@ -1786,8 +1796,10 @@ try
 
 
 	//To use the AsyncTask, it must be subclassed
-	private class LoadViewTask extends AsyncTask<Void, Integer, Void>
+	private class LoadViewTask extends AsyncTask<Void, Integer, Boolean>
 	{
+		boolean generated=false;
+		boolean saved=false;
 		//Before running code in separate thread
 		@Override
 		protected void onPreExecute()
@@ -1799,29 +1811,20 @@ try
 
 		//The code to be executed in a background thread.
 		@Override
-		protected Void doInBackground(Void... params)
+		protected Boolean doInBackground(Void... params)
 		{
-            /* This is just a code that delays the thread execution 4 times,
-             * during 850 milliseconds and updates the current progress. This
-             * is where the code that is going to be executed on a background
-             * thread must be placed.
-             */
 
-					try {
-						mygif.savedrawinglist(filename);
-						mygif.generateGIF(filename);
+				try {
+						saved=mygif.savedrawinglist(filename);
+						generated=mygif.generateGIF(filename);
+						return true;
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-						CharSequence text = getString(R.string.savegiferror);
-						int duration = Toast.LENGTH_LONG;
-						Toast toast = Toast.makeText(MainActivity.this, text, duration);
-						toast.show();
+
+						return false;
 					}
 
-
-
-			return null;
 		}
 
 		//Update the progress
@@ -1834,10 +1837,17 @@ try
 
 		//after executing the code in the thread
 		@Override
-		protected void onPostExecute(Void result)
+		protected void onPostExecute(Boolean result)
 		{
 			//close the progress dialog
 			progressDialog.dismiss();
+if(!result){
+	CharSequence text =getString(R.string.savegiferror);
+	int duration = Toast.LENGTH_LONG;
+	Toast toast = Toast.makeText(MainActivity.this, text, duration);
+	toast.show();
+}
+
 			//initialize the View
 		//	setContentView(R.layout.main);
 		}

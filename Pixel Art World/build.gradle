@@ -9,8 +9,8 @@ android {
         applicationId "kapp.pixelartworld"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 12
-        versionName "1.4.3"
+        versionCode 13
+        versionName "1.4.4"
         multiDexEnabled true
     }
 

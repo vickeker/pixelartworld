@@ -2,7 +2,7 @@
 
 <resources>
     <string name="app_name">Pixel Art World</string>
-    <string name="info">version 1.4.3 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
+    <string name="info">version 1.4.4 \nPowered by K@pp 2016 \nmobile.kapp@gmail.com</string>
     <string name="settings_title">Préférences</string>
     <string name="share_title">Partager</string>
     <string name="settings">En préparation!</string>

@@ -424,10 +424,24 @@ private Bitmap bitmap;
 					"PrevColor");
 			SavedActionList.remove(lastelement);
 			if(pos<mStartingPosition||((pos-1)%mMaxColumnCount)<((mStartingPosition-1)%mMaxColumnCount)||((pos-1)%mMaxColumnCount)>=(mStartingPosition%mMaxColumnCount)+mColumnCount-1||pos>mStartingPosition+(mColumnCount*mMaxColumnCount)-(mStartingPosition%mMaxColumnCount)){
-				mGlobalColorList.set(pos,prevcolor);
+			try {
+                mGlobalColorList.set(pos, prevcolor);
+            } catch(Exception e){
+                CharSequence text = mContext.getString(R.string.noactionsaved);
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(mContext, text, duration);
+                toast.show();
+            }
 			} else {
 				int displaypos = getDisplayPosition(pos);
-				mColorList.set(displaypos, prevcolor);
+                try {
+                    mColorList.set(displaypos, prevcolor);
+                } catch (Exception e){
+                    CharSequence text = mContext.getString(R.string.noactionsaved);
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(mContext, text, duration);
+                    toast.show();
+                }
 				setGlobalList(mColorList);
 				ImageView iv = (ImageView) getChildAt(displaypos);
 				iv.setBackgroundColor(prevcolor);
@@ -512,26 +526,27 @@ private Bitmap bitmap;
 	}
 
 	public void setGlobalList(ArrayList<Integer> colorlist) {
-		if (colorlist.size() < mGlobalColorList.size() - 1) {
-			int a = 0;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					mGlobalColorList.set(i, colorlist.get(a));
-					a++;
-				}
-			}
-		} else if (colorlist.size() >= mGlobalColorList.size() - 1) {
-			if(mColumnCount!=mMaxColumnCount) {
-				updateSavedActionList(mColumnCount, mMaxColumnCount);
-			}
-			mGlobalColorList.clear();
-			mGlobalColorList.add(mColumnCount);
-			mGlobalColorList.addAll(colorlist);
-			mMaxColumnCount = mColumnCount;
+        if(colorlist!=null && mGlobalColorList != null) {
+            if (colorlist.size() < mGlobalColorList.size() - 1) {
+                int a = 0;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+                        mGlobalColorList.set(i, colorlist.get(a));
+                        a++;
+                    }
+                }
+            } else if (colorlist.size() >= mGlobalColorList.size() - 1) {
+                if (mColumnCount != mMaxColumnCount) {
+                    updateSavedActionList(mColumnCount, mMaxColumnCount);
+                }
+                mGlobalColorList.clear();
+                mGlobalColorList.add(mColumnCount);
+                mGlobalColorList.addAll(colorlist);
+                mMaxColumnCount = mColumnCount;
 
-		}
-
+            }
+        }
 	}
 
 
@@ -848,7 +863,9 @@ private Bitmap bitmap;
 				for (int j = 0; j <= mColumnCount - 1; j++) {
 					for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
 							+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
 						newList.add(mGlobalColorList.get(i));
+						}
 					}
 				}
 			} else {
@@ -856,7 +873,9 @@ private Bitmap bitmap;
 				mColumnCount = mColumnCount + 2;
 				setGlobalList(oldlist);
 				for (int i = 1; i <= mGlobalColorList.size() - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
+					if(i<mGlobalColorList.size()) {
+						newList.add(mGlobalColorList.get(i));
+					}
 				}
 			}
 			mMaxChildren = mColumnCount * mColumnCount;
@@ -880,7 +899,9 @@ private Bitmap bitmap;
 			for (int j = 0; j <= mColumnCount - 1; j++) {
 				for (int i = a + (j * mMaxColumnCount); i <= a
 						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
+					if(i<mGlobalColorList.size()) {
+						newList.add(mGlobalColorList.get(i));
+					}
 				}
 			}
 			mColorList.clear();
@@ -898,155 +919,183 @@ private Bitmap bitmap;
 	public ArrayList<Integer> moveright(ArrayList<Integer> oldlist) {
 		ArrayList<Integer> newList = new ArrayList<Integer>();
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		setGlobalList(oldlist);
-		int line = (int) mStartingPosition / mMaxColumnCount;
-		if (mStartingPosition + mColumnCount > mMaxColumnCount*(line+1)) {
-			list = addcol(mGlobalColorList, mMaxColumnCount, 2);
-			mGlobalColorList.clear();
-			mMaxColumnCount = mMaxColumnCount + 2;
-			mGlobalColorList.add(mMaxColumnCount);
-			mGlobalColorList.addAll(list);
-			mStartingPosition = mStartingPosition + mMaxColumnCount
-					+ line * 2 +2;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
-				}
-			}
-			mMaxChildren = mColumnCount * mColumnCount;
-			updateSavedActionList(mMaxColumnCount, mMaxColumnCount-2);
-		} else {
-			mStartingPosition=mStartingPosition+1;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
-				}
-			}
-		}
-		mColorList.clear();
-		mColorList = newList;
-		updatechild(newList);
-		invalidate();
-		requestLayout();
-		return newList;
+        if(oldlist!=null) {
+            setGlobalList(oldlist);
+            int line = (int) mStartingPosition / mMaxColumnCount;
+            if (mStartingPosition + mColumnCount > mMaxColumnCount * (line + 1)) {
+                list = addcol(mGlobalColorList, mMaxColumnCount, 2);
+                mGlobalColorList.clear();
+                mMaxColumnCount = mMaxColumnCount + 2;
+                mGlobalColorList.add(mMaxColumnCount);
+                mGlobalColorList.addAll(list);
+                mStartingPosition = mStartingPosition + mMaxColumnCount
+                        + line * 2 + 2;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
+							newList.add(mGlobalColorList.get(i));
+						}
+                    }
+                }
+                mMaxChildren = mColumnCount * mColumnCount;
+                updateSavedActionList(mMaxColumnCount, mMaxColumnCount - 2);
+            } else {
+                mStartingPosition = mStartingPosition + 1;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
+							newList.add(mGlobalColorList.get(i));
+						}
+                    }
+                }
+            }
+            mColorList.clear();
+            mColorList = newList;
+            updatechild(newList);
+            invalidate();
+            requestLayout();
+            return newList;
+        }
+            return oldlist;
 	}
 
 	
 	public ArrayList<Integer> moveleft(ArrayList<Integer> oldlist) {
-		ArrayList<Integer> newList = new ArrayList<Integer>();
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		setGlobalList(oldlist);
-		int line = (int) mStartingPosition / mMaxColumnCount;
-		if ((mStartingPosition-1)%mMaxColumnCount==0) {
-			list = addcol(mGlobalColorList, mMaxColumnCount, 2);
-			mGlobalColorList.clear();
-			mMaxColumnCount = mMaxColumnCount + 2;
-			mGlobalColorList.add(mMaxColumnCount);
-			mGlobalColorList.addAll(list);
-			mStartingPosition = (line+1)* mMaxColumnCount + 1;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
-				}
-			}
-			mMaxChildren = mColumnCount * mColumnCount;
-			updateSavedActionList(mMaxColumnCount, mColumnCount);
+        ArrayList<Integer> newList = new ArrayList<Integer>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        if (oldlist != null) {
+            setGlobalList(oldlist);
+            int line = (int) mStartingPosition / mMaxColumnCount;
+            if ((mStartingPosition - 1) % mMaxColumnCount == 0) {
+                list = addcol(mGlobalColorList, mMaxColumnCount, 2);
+                mGlobalColorList.clear();
+                mMaxColumnCount = mMaxColumnCount + 2;
+                mGlobalColorList.add(mMaxColumnCount);
+                mGlobalColorList.addAll(list);
+                mStartingPosition = (line + 1) * mMaxColumnCount + 1;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
+							newList.add(mGlobalColorList.get(i));
+						}
+                    }
+                }
+                mMaxChildren = mColumnCount * mColumnCount;
+                updateSavedActionList(mMaxColumnCount, mColumnCount);
 
-		} else {
-			mStartingPosition=mStartingPosition-1;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
-				}
-			}
-		}
-		mColorList.clear();
-		mColorList = newList;
-		updatechild(newList);
-		invalidate();
-		requestLayout();
-		return newList;
-	}
+            } else {
+                mStartingPosition = mStartingPosition - 1;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
+							newList.add(mGlobalColorList.get(i));
+						}
+                    }
+                }
+            }
+            mColorList.clear();
+            mColorList = newList;
+            updatechild(newList);
+            invalidate();
+            requestLayout();
+            return newList;
+        }
+        return oldlist;
+    }
 	
 	public ArrayList<Integer> moveup(ArrayList<Integer> oldlist) {
 		ArrayList<Integer> newList = new ArrayList<Integer>();
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		setGlobalList(oldlist);
-		int line = (int) mStartingPosition / mMaxColumnCount;
-		if (mStartingPosition<=mMaxColumnCount) {
-			list = addcol(mGlobalColorList, mMaxColumnCount, 2);
-			mGlobalColorList.clear();
-			mMaxColumnCount = mMaxColumnCount + 2;
-			mGlobalColorList.add(mMaxColumnCount);
-			mGlobalColorList.addAll(list);
-			mStartingPosition=mStartingPosition+1;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount -1; i++) {
-					newList.add(mGlobalColorList.get(i));
-				}
-			}
-			mMaxChildren = mColumnCount * mColumnCount;
-			updateSavedActionList(mMaxColumnCount, mColumnCount);
+        if(oldlist!=null) {
+            setGlobalList(oldlist);
+            int line = (int) mStartingPosition / mMaxColumnCount;
+            if (mStartingPosition <= mMaxColumnCount) {
+                list = addcol(mGlobalColorList, mMaxColumnCount, 2);
+                mGlobalColorList.clear();
+                mMaxColumnCount = mMaxColumnCount + 2;
+                mGlobalColorList.add(mMaxColumnCount);
+                mGlobalColorList.addAll(list);
+                mStartingPosition = mStartingPosition + 1;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
+							newList.add(mGlobalColorList.get(i));
+						}
+                    }
+                }
+                mMaxChildren = mColumnCount * mColumnCount;
+                updateSavedActionList(mMaxColumnCount, mColumnCount);
 
-		} else {
-			mStartingPosition=mStartingPosition-mMaxColumnCount;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
-				}
-			}
-					}
-		mColorList.clear();
-		mColorList = newList;
-		updatechild(newList);
-		invalidate();
-		requestLayout();
-		return newList;
+            } else {
+                mStartingPosition = mStartingPosition - mMaxColumnCount;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
+							newList.add(mGlobalColorList.get(i));
+						}
+                    }
+                }
+            }
+            mColorList.clear();
+            mColorList = newList;
+            updatechild(newList);
+            invalidate();
+            requestLayout();
+            return newList;
+        }
+        return oldlist;
 	}
 	
 	public ArrayList<Integer> movedown(ArrayList<Integer> oldlist) {
 		ArrayList<Integer> newList = new ArrayList<Integer>();
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		setGlobalList(oldlist);
-		int line = (int) mStartingPosition / mMaxColumnCount;
-		if (mStartingPosition>mMaxChildren-(mColumnCount*mMaxColumnCount)) {
-			list = addcol(mGlobalColorList, mMaxColumnCount, 2);
-			mMaxColumnCount = mMaxColumnCount+2;
-			mGlobalColorList.clear();
-			mGlobalColorList.add(mMaxColumnCount);
-			mGlobalColorList.addAll(list);
-			mStartingPosition = mStartingPosition + mMaxColumnCount*2
-					+ line * 2 + 1;
-			for (int j = 0; j <= mColumnCount -1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
-				}
-			}
-			mMaxChildren = mColumnCount * mColumnCount;
-			updateSavedActionList(mMaxColumnCount, mColumnCount);
+        if(oldlist!=null) {
+            setGlobalList(oldlist);
+            int line = (int) mStartingPosition / mMaxColumnCount;
+            if (mStartingPosition > mMaxChildren - (mColumnCount * mMaxColumnCount)) {
+                list = addcol(mGlobalColorList, mMaxColumnCount, 2);
+                mMaxColumnCount = mMaxColumnCount + 2;
+                mGlobalColorList.clear();
+                mGlobalColorList.add(mMaxColumnCount);
+                mGlobalColorList.addAll(list);
+                mStartingPosition = mStartingPosition + mMaxColumnCount * 2
+                        + line * 2 + 1;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
+							newList.add(mGlobalColorList.get(i));
+						}
+                    }
+                }
+                mMaxChildren = mColumnCount * mColumnCount;
+                updateSavedActionList(mMaxColumnCount, mColumnCount);
 
-		} else {
-			mStartingPosition=mStartingPosition+mMaxColumnCount;
-			for (int j = 0; j <= mColumnCount - 1; j++) {
-				for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
-						+ (j * mMaxColumnCount) + mColumnCount - 1; i++) {
-					newList.add(mGlobalColorList.get(i));
-				}
-			}
-		}
-		mColorList.clear();
-		mColorList = newList;
-		updatechild(newList);
-		invalidate();
-		requestLayout();
-		return newList;
+            } else {
+                mStartingPosition = mStartingPosition + mMaxColumnCount;
+                for (int j = 0; j <= mColumnCount - 1; j++) {
+                    for (int i = mStartingPosition + (j * mMaxColumnCount); i <= mStartingPosition
+                            + (j * mMaxColumnCount) + mColumnCount - 1; i++) {
+						if(i<mGlobalColorList.size()) {
+							newList.add(mGlobalColorList.get(i));
+						}
+                    }
+                }
+            }
+            mColorList.clear();
+            mColorList = newList;
+            updatechild(newList);
+            invalidate();
+            requestLayout();
+            return newList;
+        }
+        return oldlist;
 	}
 
 	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {

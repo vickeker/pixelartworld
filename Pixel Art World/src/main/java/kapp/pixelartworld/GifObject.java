@@ -116,10 +116,12 @@ public class GifObject {
         return animDrawable;
     }
 
-    public void generateGIF(String myfilename) {
-      //  ArrayList<Bitmap> bitmaps = adapter.getBitmapArray();
+    public boolean generateGIF(String myfilename) {
+      boolean generated=true;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         AnimatedGifEncoder encoder = new AnimatedGifEncoder();
+        File folder = new File(Environment.getExternalStorageDirectory(), "PixelWorld/gif/");
+        FileOutputStream outStream = null;
         if(loop) {
             encoder.setRepeat(0);
         } else {
@@ -130,25 +132,28 @@ public class GifObject {
             encoder.addFrame(GifList.get(i));
             encoder.setDelay(timeframe);
         }
-        encoder.finish();
-        FileOutputStream outStream = null;
-        File folder = new File(Environment.getExternalStorageDirectory(),"PixelWorld/gif/");
-        if(!folder.exists()) {
-            if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-                //RUNTIME PERMISSION Android M
-                if(PackageManager.PERMISSION_GRANTED== ActivityCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                    folder = new File(Environment.getExternalStorageDirectory(),"PixelWorld/gif/");
-                    if(!folder.exists()) {
-                        boolean dir = folder.mkdirs();
+        try {
+            encoder.finish();
+            if (!folder.exists()) {
+                if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+                    //RUNTIME PERMISSION Android M
+                    if (PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        folder = new File(Environment.getExternalStorageDirectory(), "PixelWorld/gif/");
+                        if (!folder.exists()) {
+                            boolean dir = folder.mkdirs();
+                        }
+                    } else {
+                        ActivityCompat.requestPermissions((Activity) context,
+                                new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                REQUEST_WRITE_EXTERNAL_STORAGE);
                     }
-                }else{
-                    ActivityCompat.requestPermissions((Activity)context,
-                            new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            REQUEST_WRITE_EXTERNAL_STORAGE);
-                }
 
+                }
+                boolean dir = folder.mkdirs();
             }
-            boolean dir = folder.mkdirs();
+        } catch (Exception e) {
+            e.printStackTrace();
+            generated=false;
         }
         File file=new File(folder, myfilename+".gif");
         try{
@@ -157,11 +162,10 @@ public class GifObject {
             outStream.close();
         }catch(Exception e){
             e.printStackTrace();
-            CharSequence text = context.getString(R.string.savegiferror);
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+generated=false;
         }
+
+        return generated;
     }
 
 
@@ -238,7 +242,7 @@ public class GifObject {
         return data;
     }
 
-    public void savedrawinglist(String myfilename)
+    public boolean savedrawinglist(String myfilename)
         throws ClassNotFoundException {
         String data= getJsonString();
         try {
@@ -247,9 +251,11 @@ public class GifObject {
             Writer out=new BufferedWriter(new FileWriter(filename));
             out.write(data);
             out.close();
+            return true;
         }
         catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
     }

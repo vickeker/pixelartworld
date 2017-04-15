@@ -14,8 +14,10 @@ public class Drawing {
     public Drawing(int colNum, ArrayList<Integer> colorList){
         colnum=colNum;
         colorlist=new ArrayList<Integer>();
-        for (Integer c : colorList) {
-            colorlist.add(c);
+        if(colorList!=null) {
+            for (Integer c : colorList) {
+                colorlist.add(c);
+            }
         }
     }
 
